@@ -1,6 +1,8 @@
 require 'sinatra'
 require 'vimeo'
 require 'shotgun'
+require 'haml'
+require "bundler/setup"
 enable :sessions
 
 get '/:key/:secret/:access_token/:access_token_secret/:user_id' do
@@ -31,10 +33,10 @@ get '/list/:page' do
   });
 
   @videos = @videos['videos']['video']
-  erb :index
+  haml :index
 end
 
 get '/view/:id' do
   @videoId = params[:id];
-  erb :view;
+  haml :view;
 end
