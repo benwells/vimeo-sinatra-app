@@ -2,3 +2,11 @@ body {
   text-align:center;
   background: #86a5b7;
 }
+
+.container {
+  width:40%;
+}
+
+li.media {
+  text-align: left;
+}

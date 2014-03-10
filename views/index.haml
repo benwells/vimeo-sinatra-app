@@ -1,11 +1,12 @@
 %h2 Your Videos
 
-%ul.media-list
-  - @videos.each do |video|
-    %li.media
-      %a.pull-left{:href => '/view/' + video['id'] }
-        %img.media-object{:src => video['thumbnails']['thumbnail'][0]['_content']}
-      .media-body
-        %h4= video['title']
-        %p= video['description']
-        %p=  video['upload_date']
+.container
+  %ul.media-list
+    - @videos.each do |video|
+      %li.media
+        %a.pull-left{:href => '/view/' + video['id'] }
+          %img.media-object{:src => video['thumbnails']['thumbnail'][0]['_content']}
+        .media-body
+          %h4= video['title']
+          %p= video['description']
+          %p=  video['upload_date']
