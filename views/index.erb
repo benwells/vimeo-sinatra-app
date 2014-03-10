@@ -3,14 +3,23 @@
   <header>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-
   </header>
   <body>
 
     <h2>Your Videos</h2>
-    <a href="#" class='btn btn-success'></a>
-    <ul>
-
+    <ul class="media-list">
+      <% @videos.each do |video| %>
+      <li class="media">
+        <a class="pull-left" href="/view/<%= video['id']%>">
+          <img class="media-object" src="<%= video['thumbnails']['thumbnail'][0]['_content'] %>" alt="...">
+        </a>
+        <div class="media-body">
+          <h4 class="media-heading"><%= video['title'] %></h4>
+          <p><%= video['description'] %></p>
+          <p><%= video['upload_date'] %></p>
+        </div>
+      </li>
+      <% end %>
     </ul>
     <p><%= @videos %></p>
   </body>
