@@ -2,7 +2,7 @@ require 'sinatra'
 require 'vimeo'
 require 'shotgun'
 require 'haml'
-require "bundler/setup"
+# require "bundler/setup"
 enable :sessions
 
 get '/:key/:secret/:access_token/:access_token_secret/:user_id' do
