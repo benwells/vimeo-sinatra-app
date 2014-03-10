@@ -3,6 +3,7 @@ require 'vimeo'
 require 'shotgun'
 require 'haml'
 enable :sessions
+set :protection, :except => :frame_options
 
 get '/:key/:secret/:access_token/:access_token_secret/:user_id' do
 
