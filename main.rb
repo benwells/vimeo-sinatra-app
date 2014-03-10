@@ -36,6 +36,5 @@ end
 
 get '/view/:id' do
   @videoId = params[:id];
-  @test = session['at'];
   erb :view;
 end
