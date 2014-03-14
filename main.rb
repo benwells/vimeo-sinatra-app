@@ -81,3 +81,11 @@ post '/update' do
   # "#{@title} #{@description} #{@id}"
   redirect '/list/1';
 end
+
+get '/delete/:id' do
+  'You deleted it!!!!'
+end
+
+get '/upload' do
+  'Upload a Video!'
+end
