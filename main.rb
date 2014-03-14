@@ -87,5 +87,27 @@ get '/delete/:id' do
 end
 
 get '/upload' do
-  'Upload a Video!'
+  haml :upload
+end
+
+post '/upload' do
+  upload = Vimeo::Advanced::Upload.new(session['ck'],
+    session['cs'],
+    :token => session['at'],
+    :secret => session['ats']
+  );
+
+  unless params[:file] && (tmpfile = params[:file][:tempfile]) && (name = params[:file][:filename])
+    # return haml(:upload)
+  end
+  # while blk = tmpfile.read(65536)
+      # File.open(File.join(Dir.pwd,"public/uploads", name), "wb") { |f| f.write(tmpfile.read) }
+  # end
+ # 'success'
+  # aFile = params['vidFile']
+
+
+  upload.upload(tmpfile);
+
+  "file uploaded!"
 end
