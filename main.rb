@@ -50,13 +50,22 @@ end
 
 get '/edit/:id' do
   video = session['video']
-  @info = video.get_info(params[:id])
+  @id = params[:id]
+  @info = video.get_info(@id)
   @info = @info['video'][0];
 
   haml :edit
 end
 
 post '/update' do
+  video = session['video']
   @title = params["title"]
-  "#{@title}"
+  @description = params["description"]
+  @id = params["vid_id"]
+  video.set_description(@id, @description)
+
+  video.set_title(@id, @title);
+
+  # "#{@title} #{@description} #{@id}"
+  redirect '/list/1';
 end
