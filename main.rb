@@ -26,20 +26,32 @@ end
 get '/list/:page' do
   # getting and listing videos
   video = session['video']
+  @currentPage = params[:page].to_i
 
-  # video = Vimeo::Advanced::Video.new(session['ck'],
-  #   session['cs'],
-  #   :token => session['at'],
-  #   :secret => session['ats']);
+  if @currentPage == 1
+    @firstVideo = 1;
+  else
+    @firstVideo = @currentPage * 5 - 4;
+  end
+
+  @lastVideo = @firstVideo.to_i + 4;
+
+  @totalVideos = video.get_all(session['uid'], {
+    :full_response => "0",
+    :sort => "newest"
+  });
+  @totalVideos = @totalVideos['videos']['video'].length
+
+  @numPages = (@totalVideos / 5).ceil;
 
   @videos = video.get_all(session['uid'], {
-    :page => params[:page],
+    :page => @currentPage,
     :per_page => "5",
     :full_response => "1",
     :sort => "newest"
   });
-
   @videos = @videos['videos']['video']
+
   haml :index
 end
 
