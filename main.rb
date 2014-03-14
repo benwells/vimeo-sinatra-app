@@ -15,15 +15,22 @@ get '/:key/:secret/:access_token/:access_token_secret/:user_id' do
   # base = Vimeo::Advanced::Base.new(consumer_key, consumer_secret, :token => access_token, :secret => access_token_secret)
   # puts base.user_id
 
+  session['video'] = Vimeo::Advanced::Video.new(session['ck'],
+    session['cs'],
+    :token => session['at'],
+    :secret => session['ats']);
+
   redirect '/list/1';
 end
 
 get '/list/:page' do
   # getting and listing videos
-  video = Vimeo::Advanced::Video.new(session['ck'],
-    session['cs'],
-    :token => session['at'],
-    :secret => session['ats']);
+  video = session['video']
+
+  # video = Vimeo::Advanced::Video.new(session['ck'],
+  #   session['cs'],
+  #   :token => session['at'],
+  #   :secret => session['ats']);
 
   @videos = video.get_all(session['uid'], {
     :page => params[:page],
@@ -38,5 +45,18 @@ end
 
 get '/view/:id' do
   @videoId = params[:id];
-  haml :view;
+  haml :view
+end
+
+get '/edit/:id' do
+  video = session['video']
+  @info = video.get_info(params[:id])
+  @info = @info['video'][0];
+
+  haml :edit
+end
+
+post '/update' do
+  @title = params["title"]
+  "#{@title}"
 end
