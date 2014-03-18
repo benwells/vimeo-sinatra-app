@@ -33,7 +33,7 @@
                 %span.glyphicon.glyphicon-pencil
               %a.btn.btn-success.btn-small{href:'/view/' + video['id']}
                 %span.glyphicon.glyphicon-search
-              %a.btn.btn-danger.btn-small{href:'/delete/' + video['id']}
+              %a.btn.btn-danger.btn-small{onclick:'return confirm("Are you sure you want to delete this video?")', href:'/delete/' + video['id']}
                 %span.glyphicon.glyphicon-remove
             %a.pull-left{:href => '/view/' + video['id'] }
               %img.media-object{:src => video['thumbnails']['thumbnail'][0]['_content']}
