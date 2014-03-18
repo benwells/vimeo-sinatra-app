@@ -41,3 +41,6 @@ li.media {
   border: 1px solid gray;
   border-radius: 4px;
 }
+.pagination {
+  margin: 7px 0;
+}
