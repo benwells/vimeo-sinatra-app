@@ -83,7 +83,9 @@ post '/update' do
 end
 
 get '/delete/:id/:title' do
-  @title = params[:title];
+  video = session['video']
+  @title = params[:title]
+  video.delete(params[:id])
   haml :delete
 end
 
