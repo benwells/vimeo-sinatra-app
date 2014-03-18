@@ -83,6 +83,7 @@ post '/update' do
 end
 
 get '/delete/:id/:title' do
+  @title = params[:title];
   haml :delete
 end
 
