@@ -1,8 +1,10 @@
 .container-fluid
   .row-fluid
-    %h2
-      %a{href:'/list/1'} < Back
-      Edit Your Video
+    .col-md-6.col-md-offset-3
+      %a.btn.btn-info.pull-left.btn-sm{href:'/list/1'} < Back
+      %br
+      %h2
+        Edit Your Video
   .row-fluid
     .col-md-6.col-md-offset-3
       %form{action:'/update',method:'post', role:'form'}
@@ -10,7 +12,7 @@
           %label{for:'title'} Title
           %input.form-control{type:'text', name:'title', id:'title', value:@info['title']}
         .form-group
-          %label{for:'description'}
+          %label{for:'description'} Description
           %textarea.form-control{rows:'3', type:'text', name:'description', id:'description'}= @info['description']
         %br
         %input{type:'hidden', name:'vid_id', id:'vid_id', value:@id}
