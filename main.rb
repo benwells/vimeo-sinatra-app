@@ -82,7 +82,7 @@ post '/update' do
   redirect '/list/1';
 end
 
-get '/delete/:id' do
+get '/delete/:id/:title' do
   haml :delete
 end
 
