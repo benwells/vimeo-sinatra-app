@@ -83,7 +83,7 @@ post '/update' do
 end
 
 get '/delete/:id' do
-  'You deleted it!!!!'
+  haml :delete
 end
 
 get '/upload' do
