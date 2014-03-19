@@ -2,6 +2,8 @@ require 'sinatra'
 require 'vimeo'
 require 'shotgun'
 require 'haml'
+require 'sinatra/formkeeper'
+
 enable :sessions
 set :protection, :except => :frame_options
 
@@ -90,19 +92,35 @@ get '/delete/:id/:title' do
 end
 
 get '/upload' do
+
   haml :upload
 end
 
 post '/upload' do
-  upload = Vimeo::Advanced::Upload.new(session['ck'],
-    session['cs'],
-    :token => session['at'],
-    :secret => session['ats']
-  );
 
-  unless params[:file] && (tmpfile = params[:file][:tempfile]) && (name = params[:file][:filename])
-    # return haml(:upload)
+  form do
+    filters :strip
+    field :file,   :present => true
   end
+
+  if form.failed?
+    redirect '/upload';
+    # this is where I can flash a message
+  else
+    tmpfile = params[:file][:tempfile]
+    name = params[:file][:filename]
+    upload = Vimeo::Advanced::Upload.new(session['ck'],
+      session['cs'],
+      :token => session['at'],
+      :secret => session['ats']
+    );
+    upload.upload(tmpfile);
+
+  end
+
+  # unless params[:file] && (tmpfile = params[:file][:tempfile]) && (name = params[:file][:filename])
+  #   # return haml(:upload)
+  # end
   # while blk = tmpfile.read(65536)
       # File.open(File.join(Dir.pwd,"public/uploads", name), "wb") { |f| f.write(tmpfile.read) }
   # end
@@ -110,7 +128,6 @@ post '/upload' do
   # aFile = params['vidFile']
 
 
-  upload.upload(tmpfile);
 
-  "file uploaded!"
+  # "file uploaded!"
 end
