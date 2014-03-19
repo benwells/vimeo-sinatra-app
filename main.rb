@@ -12,17 +12,18 @@ class VimeoApp < Sinatra::Base
   end
 
   # Initializer Route
-  get '/:key/:secret/:access_token/:access_token_secret/:user_id' do
+  get '/:key/:secret/:access_token/:access_token_secret/:user_id/:visitor_id/:app_id' do
 
+    # store all API keys and user data in session hash
     session['ck'] = params[:key];
     session['cs'] = params[:secret];
     session['at'] = params[:access_token];
     session['ats'] = params[:access_token_secret];
-    session['uid'] = params[:user_id];
-    # base = Vimeo::Advanced::Base.new(consumer_key, consumer_secret, :token => access_token, :secret => access_token_secret)
-    # puts base.user_id
+    session['user_id'] = params[:user_id];
+    session['visitor_id'] = params[:visitor_id];
 
-    session['video'] = Vimeo::Advanced::Video.new(session['ck'],
+    # create api session and store it in the session
+    session['api_session'] = Vimeo::Advanced::Video.new(session['ck'],
       session['cs'],
       :token => session['at'],
       :secret => session['ats']);
@@ -32,7 +33,7 @@ class VimeoApp < Sinatra::Base
 
   get '/list/:page' do
     # getting and listing videos
-    video = session['video']
+    video = session['api_session']
     @currentPage = params[:page].to_i
 
     if @currentPage == 1
@@ -68,7 +69,7 @@ class VimeoApp < Sinatra::Base
   end
 
   get '/edit/:id' do
-    video = session['video']
+    video = session['api_session']
     @id = params[:id]
     @info = video.get_info(@id)
     @info = @info['video'][0];
@@ -77,7 +78,7 @@ class VimeoApp < Sinatra::Base
   end
 
   post '/update' do
-    video = session['video']
+    video = session['api_session']
     @title = params["title"]
     @description = params["description"]
     @id = params["vid_id"]
@@ -90,7 +91,7 @@ class VimeoApp < Sinatra::Base
   end
 
   get '/delete/:id/:title' do
-    video = session['video']
+    video = session['api_session']
     @title = params[:title]
     video.delete(params[:id])
     haml :delete
@@ -118,13 +119,13 @@ class VimeoApp < Sinatra::Base
         :token => session['at'],
         :secret => session['ats']
       );
-      
+
       # upload the file
       response = upload.upload(tmpfile);
 
       if response["stat"] == "ok"
         newVideoId = response['ticket']['video_id']
-        video = session['video']
+        video = session['api_session']
         video.set_description(newVideoId, params[:description]);
         video.set_title(newVideoId, params[:title]);
         flash[:notice] = "Video Uploaded Successfully."
