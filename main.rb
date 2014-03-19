@@ -1,13 +1,10 @@
-# require 'sinatra'
-# require 'shotgun'
-# require 'haml'
-# require 'sinatra/formkeeper'
-# require 'rack-flash3'
 require 'sinatra/base'
+require 'rack-flash'
 
 class VimeoApp < Sinatra::Base
   register Sinatra::FormKeeper
-  
+  use Rack::Flash
+
   configure do
     enable :sessions
     set :session_secret, "Session Secret for shotgun development"
