@@ -19,8 +19,9 @@ class VimeoApp < Sinatra::Base
     session['cs'] = params[:secret];
     session['at'] = params[:access_token];
     session['ats'] = params[:access_token_secret];
-    session['user_id'] = 'u' + params[:user_id].to_s;
-    session['visitor_id'] = 'a' + params[:visitor_id].to_s;
+    session['user_id'] = params[:user_id].to_s;
+    session['visitor_id'] = 'u' + params[:visitor_id].to_s;
+    session['app_id'] = 'a' + params[:app_id].to_s;
 
     # create api session and store it in the session
     session['api_session'] = Vimeo::Advanced::Video.new(
@@ -134,6 +135,7 @@ class VimeoApp < Sinatra::Base
         video = session['api_session']
         video.set_description(newVideoId, params[:description]);
         video.set_title(newVideoId, params[:title]);
+        video.add_tags(newVideoId, session[:user_id])
         flash[:notice] = "Video Uploaded Successfully."
         redirect "/list/1"
       else
