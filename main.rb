@@ -103,24 +103,36 @@ class VimeoApp < Sinatra::Base
   post '/upload' do
 
     form do
-      filters :strip
       field :file,   :present => true
     end
 
     if form.failed?
       flash[:notice] = "You must choose a file."
       redirect '/upload';
-      # this is where I can flash a message
     else
-      # tmpfile = params[:file][:tempfile]
+      tmpfile = params[:file][:tempfile]
       # name = params[:file][:filename]
-      # upload = Vimeo::Advanced::Upload.new(session['ck'],
-      #   session['cs'],
-      #   :token => session['at'],
-      #   :secret => session['ats']
-      # );
-      # upload.upload(tmpfile);
 
+      upload = Vimeo::Advanced::Upload.new(session['ck'],
+        session['cs'],
+        :token => session['at'],
+        :secret => session['ats']
+      );
+      
+      # upload the file
+      response = upload.upload(tmpfile);
+
+      if response["stat"] == "ok"
+        newVideoId = response['ticket']['video_id']
+        video = session['video']
+        video.set_description(newVideoId, params[:description]);
+        video.set_title(newVideoId, params[:title]);
+        flash[:notice] = "Video Uploaded Successfully."
+        redirect "/list/1"
+      else
+        flash[:notice] = "Oops, something went wrong. Please try again."
+        redirect "/upload"
+      end
     end
   end
 end
