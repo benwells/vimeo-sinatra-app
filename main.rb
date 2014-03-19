@@ -54,7 +54,7 @@ class VimeoApp < Sinatra::Base
     #   :sort => "newest"
     # });
 
-    @videos = video.get_by_tag(session["user_id"], {
+    @videos = video.get_by_tag(session["visitor_id"], {
       :page => @currentPage,
       :per_page => "5",
       :full_response => "1",
