@@ -4,4 +4,13 @@ $('document').ready(function() {
   $('.media-list li').hover(function () {
       $(this).find('.btn-group').toggle();
   });
+
+  //upload form stuff
+  // $('#upload-form').submit(function(e) {
+  //   // e.preventDefault();
+  //   $(this).find('.btn').attr('disabled', true);
+  //   if ($('#file').val()) {
+  //     console.log('submit');
+  //   }
+  // });
 });
