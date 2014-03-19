@@ -23,10 +23,12 @@ class VimeoApp < Sinatra::Base
     session['visitor_id'] = 'a' + params[:visitor_id].to_s;
 
     # create api session and store it in the session
-    session['api_session'] = Vimeo::Advanced::Video.new(session['ck'],
+    session['api_session'] = Vimeo::Advanced::Video.new(
+      session['ck'],
       session['cs'],
       :token => session['at'],
-      :secret => session['ats']);
+      :secret => session['ats']
+    );
 
     redirect '/list/1';
   end
