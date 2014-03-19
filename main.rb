@@ -34,9 +34,11 @@ class VimeoApp < Sinatra::Base
   end
 
   get '/list/:page' do
-    # getting and listing videos
+
     video = session['api_session']
     @currentPage = params[:page].to_i
+    @lastVideo
+
 
     if @currentPage == 1
       @firstVideo = 1;
@@ -46,20 +48,22 @@ class VimeoApp < Sinatra::Base
 
     @lastVideo = @firstVideo.to_i + 4;
 
-    @totalVideos = video.get_all(session['uid'], {
-      :full_response => "0",
-      :sort => "newest"
-    });
-    @totalVideos = @totalVideos['videos']['video'].length
+    # @totalVideos = video.get_all(session['uid'], {
+    #   :full_response => "0",
+    #   :sort => "newest"
+    # });
 
-    @numPages = (@totalVideos / 5).ceil;
-
-    @videos = video.get_all(session['uid'], {
+    @videos = video.get_by_tag(session["user_id"], {
       :page => @currentPage,
       :per_page => "5",
       :full_response => "1",
       :sort => "newest"
     });
+
+    @totalVideos = @videos['videos']['video'].length
+
+    @numPages = (@totalVideos / 5).ceil;
+
     @videos = @videos['videos']['video']
 
     haml :index
