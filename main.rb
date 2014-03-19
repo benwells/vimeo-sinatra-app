@@ -6,6 +6,8 @@
 require 'sinatra/base'
 
 class VimeoApp < Sinatra::Base
+  register Sinatra::FormKeeper
+  
   configure do
     enable :sessions
     set :session_secret, "Session Secret for shotgun development"
@@ -114,14 +116,14 @@ class VimeoApp < Sinatra::Base
       redirect '/upload';
       # this is where I can flash a message
     else
-      tmpfile = params[:file][:tempfile]
-      name = params[:file][:filename]
-      upload = Vimeo::Advanced::Upload.new(session['ck'],
-        session['cs'],
-        :token => session['at'],
-        :secret => session['ats']
-      );
-      upload.upload(tmpfile);
+      # tmpfile = params[:file][:tempfile]
+      # name = params[:file][:filename]
+      # upload = Vimeo::Advanced::Upload.new(session['ck'],
+      #   session['cs'],
+      #   :token => session['at'],
+      #   :secret => session['ats']
+      # );
+      # upload.upload(tmpfile);
 
     end
   end
