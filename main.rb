@@ -19,8 +19,8 @@ class VimeoApp < Sinatra::Base
     session['cs'] = params[:secret];
     session['at'] = params[:access_token];
     session['ats'] = params[:access_token_secret];
-    session['user_id'] = params[:user_id];
-    session['visitor_id'] = params[:visitor_id];
+    session['user_id'] = 'u' + params[:user_id].to_s;
+    session['visitor_id'] = 'a' + params[:visitor_id].to_s;
 
     # create api session and store it in the session
     session['api_session'] = Vimeo::Advanced::Video.new(session['ck'],
