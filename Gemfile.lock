@@ -1,11 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    formkeeper (0.0.13)
-      hpricot
-      rack
     haml (3.1.2)
-    hpricot (0.8.4)
     httparty (0.12.0)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -23,11 +19,6 @@ GEM
       rack (~> 1.4)
       rack-protection (~> 1.4)
       tilt (~> 1.3, >= 1.3.4)
-    sinatra-formkeeper (0.0.7)
-      formkeeper (~> 0.0.12)
-      hpricot
-      rack
-      sinatra
     tilt (1.4.1)
     vimeo (1.5.3)
       httparty (>= 0.4.5)
@@ -43,5 +34,4 @@ DEPENDENCIES
   haml
   shotgun
   sinatra
-  sinatra-formkeeper
   vimeo
