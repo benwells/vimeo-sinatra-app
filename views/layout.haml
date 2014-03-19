@@ -6,6 +6,8 @@
     %link{:rel=>"stylesheet", :href=>"//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css"}
     %link{:rel=>"stylesheet", :href=>"/css/app.css"}
   %body
+    - if flash[:notice]
+      %p.alert.alert-info= flash[:notice]
     =yield
   %script{:src=>"https://code.jquery.com/jquery-1.11.0.min.js"}
   %script{:src=>"//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"}
