@@ -11,7 +11,6 @@ class VimeoApp < Sinatra::Base
     set :protection, :except => :frame_options
   end
 
-
   # Initializer Route
   get '/:key/:secret/:access_token/:access_token_secret/:user_id' do
 
@@ -98,7 +97,6 @@ class VimeoApp < Sinatra::Base
   end
 
   get '/upload' do
-
     haml :upload
   end
 
@@ -110,6 +108,7 @@ class VimeoApp < Sinatra::Base
     end
 
     if form.failed?
+      flash[:notice] = "You must choose a file."
       redirect '/upload';
       # this is where I can flash a message
     else
