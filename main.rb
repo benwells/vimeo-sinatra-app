@@ -95,7 +95,6 @@ class VimeoApp < Sinatra::Base
     video.delete(params[:id]);
     flash[:notice] = "The Video '#{params[:title]}' has been deleted."
     redirect '/list/1';
-    # haml :delete
   end
 
   get '/upload' do
