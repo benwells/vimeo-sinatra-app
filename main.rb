@@ -128,7 +128,7 @@ class VimeoApp < Sinatra::Base
         video = session['api_session']
         video.set_description(newVideoId, params[:description])
         video.set_title(newVideoId, params[:title])
-        video.add_tags(newVideoId, session[:visitor_id])
+        video.add_tags(newVideoId, "#{session[:visitor_id]}, #{session[:app_id]}")
         flash[:notice] = "Video Uploaded Successfully."
         redirect "/list/1"
       else
