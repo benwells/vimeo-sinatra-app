@@ -92,9 +92,10 @@ class VimeoApp < Sinatra::Base
 
   get '/delete/:id/:title' do
     video = session['api_session']
-    @title = params[:title]
-    video.delete(params[:id])
-    haml :delete
+    video.delete(params[:id]);
+    flash[:notice] = "The Video '#{params[:title]}' has been deleted."
+    redirect '/list/1';
+    # haml :delete
   end
 
   get '/upload' do
