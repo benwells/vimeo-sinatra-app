@@ -41,14 +41,14 @@ class VimeoApp < Sinatra::Base
     @lastVideo
     @totalVideos = 0
 
+    #set first video of current page`
     if @currentPage == 1
       @firstVideo = 1;
     else
       @firstVideo = @currentPage * 5 - 4;
     end
 
-    @lastVideo = @firstVideo.to_i + 4;
-
+    #get all vids from vimeo account
     @videos = video.get_all(session['uid'], {
       :page => @currentPage,
       :per_page => "5",
@@ -56,9 +56,13 @@ class VimeoApp < Sinatra::Base
       :sort => "newest"
     });
 
-    @numPages = (@totalVideos / 5).ceil;
+    # get user videos
     @videos = get_user_vids @videos['videos']['video'], session[:visitor_id];
+
+    #set pagination variables
+    @numPages = (@totalVideos / 5).ceil;
     @totalVideos = @videos.length if @videos
+    @lastVideo = @totalVideos < 5 ? @totalVideos : @firstVideo.to_i + 4;
 
     haml :index
   end
