@@ -39,7 +39,7 @@ class VimeoApp < Sinatra::Base
     video = session['api_session']
     @currentPage = params[:page].to_i
     @lastVideo
-
+    @totalVideos = 0
 
     if @currentPage == 1
       @firstVideo = 1;
@@ -49,23 +49,16 @@ class VimeoApp < Sinatra::Base
 
     @lastVideo = @firstVideo.to_i + 4;
 
-    # @totalVideos = video.get_all(session['uid'], {
-    #   :full_response => "0",
-    #   :sort => "newest"
-    # });
-
-    @videos = video.get_by_tag(session["visitor_id"], {
+    @videos = video.get_all(session['uid'], {
       :page => @currentPage,
       :per_page => "5",
       :full_response => "1",
       :sort => "newest"
     });
 
-    @totalVideos = @videos['videos']['video'].length
-
     @numPages = (@totalVideos / 5).ceil;
-
-    @videos = @videos['videos']['video']
+    @videos = get_user_vids @videos['videos']['video'], session[:visitor_id];
+    @totalVideos = @videos.length if @videos
 
     haml :index
   end
@@ -144,4 +137,22 @@ class VimeoApp < Sinatra::Base
       end
     end
   end
+
+  def get_user_vids vids, user_tag
+    isUser = false;
+    userVids = [];
+    vids = vids.to_a
+
+    vids.each_with_index do |vid, i|
+      isUser = false;
+      if vid['tags']
+        vid['tags']['tag'].each do |tag|
+          isUser = true if tag['normalized'] == user_tag
+        end
+        userVids.push(vids[i]) if isUser == true
+      end
+    end
+    return userVids
+  end
+
 end

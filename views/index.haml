@@ -31,20 +31,23 @@
         %br
         .alert.alert-warning Oops, you haven't uploaded any videos yet!
 
-      %ul.media-list
-        - @videos.each do |video|
-          %li.media
-            %a.pull-left{:href => '/view/' + video['id'] }
-              %img.media-object{:src => video['thumbnails']['thumbnail'][1]['_content']}
-            .media-body
-              %h4
-                %span= video['title']
-              %p= video['description']
-              %p=  video['upload_date']
-            .btn-group.clearfix
-              %a.btn.btn-info.btn-mini{href:'/edit/' + video['id']}
-                %span.glyphicon.glyphicon-pencil
-              %a.btn.btn-success.btn-small{href:'/view/' + video['id']}
-                %span.glyphicon.glyphicon-search
-              %a.btn.btn-danger.btn-small{onclick:'return confirm("Are you sure you want to delete this video?")', href:'/delete/' + video['id'] + '/' + video['title']}
-                %span.glyphicon.glyphicon-remove
+      - if @totalVideos > 0
+        %ul.media-list
+          - @videos.each do |video|
+            %li.media
+              %a.pull-left{:href => '/view/' + video['id'] }
+                %img.media-object{:src => video['thumbnails']['thumbnail'][1]['_content']}
+              .media-body
+                %h4
+                  %span= video['title']
+                %p= video['description']
+                %p=  video['upload_date']
+              .btn-group.clearfix
+                %a.btn.btn-info.btn-mini{href:'/edit/' + video['id']}
+                  %span.glyphicon.glyphicon-pencil
+                %a.btn.btn-success.btn-small{href:'/view/' + video['id']}
+                  %span.glyphicon.glyphicon-search
+                %a.btn.btn-danger.btn-small{onclick:'return confirm("Are you sure you want to delete this video?")', href:'/delete/' + video['id'] + '/' + video['title']}
+                  %span.glyphicon.glyphicon-remove
+
+%p= @videosTest
