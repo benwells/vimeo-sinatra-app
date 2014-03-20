@@ -6,11 +6,10 @@ $('document').ready(function() {
   });
 
   //upload form stuff
-  // $('#upload-form').submit(function(e) {
-  //   // e.preventDefault();
-  //   $(this).find('.btn').attr('disabled', true);
-  //   if ($('#file').val()) {
-  //     console.log('submit');
-  //   }
-  // });
+  $('#upload-form').on('submit', function(e) {
+    e.preventDefault();
+    $('[type=submit]').prop('disabled',true).html('Uploading, Please Wait... <i class="fa fa-spin fa-spinner">');
+    $(this).off('submit').submit();
+  });
+
 });
