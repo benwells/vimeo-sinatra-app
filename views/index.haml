@@ -17,14 +17,15 @@
             = @lastVideo
             of
             = @totalVideos
-          %ul.pagination
-            %li
-              %a.active{:href => ("/list/" + (@currentPage - 1).to_s unless @currentPage == 1 )} &laquo;
-            - (1..@numPages).each do |val|
-              %li{:class => ("disabled" unless val != @currentPage)}
-                %a{href:"/list/" + val.to_s}= val
-            %li
-              %a{:href => ("/list/" + (@currentPage + 1).to_s unless @currentPage == @numPages )} &raquo;
+          - if @totalVideos > 5
+            %ul.pagination
+              %li
+                %a.active{:href => ("/list/" + (@currentPage - 1).to_s unless @currentPage == 1 )} &laquo;
+              - (1..@numPages).each do |val|
+                %li{:class => ("disabled" unless val != @currentPage)}
+                  %a{href:"/list/" + val.to_s}= val
+              %li
+                %a{:href => ("/list/" + (@currentPage + 1).to_s unless @currentPage == @numPages )} &raquo;
 
       - if @totalVideos == 0
         %br
