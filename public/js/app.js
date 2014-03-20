@@ -12,4 +12,9 @@ $('document').ready(function() {
     $(this).off('submit').submit();
   });
 
+  //hide flash message after 7 seconds
+  setTimeout(function () {
+    $('.alert-info').hide();
+  }, 7000);
+
 });
