@@ -56,12 +56,13 @@ class VimeoApp < Sinatra::Base
       :sort => "newest"
     });
 
-    # get user videos
-    @videos = get_user_vids @videos['videos']['video'], session[:visitor_id];
+    # get user videos and app videos
+    @userVideos = filter_vids_by_tag @videos['videos']['video'], session[:visitor_id];
+    @appVideos = filter_vids_by_tag @userVideos, session[:app_id];
 
     #set pagination variables
     @numPages = (@totalVideos / 5).ceil;
-    @totalVideos = @videos.length if @videos
+    @totalVideos = @appVideos.length if @appVideos
     @lastVideo = @totalVideos < 5 ? @totalVideos : @firstVideo.to_i + 4;
 
     haml :index
@@ -99,6 +100,29 @@ class VimeoApp < Sinatra::Base
     video.delete(params[:id]);
     flash[:notice] = "The Video '#{params[:title]}' has been deleted."
     redirect '/list/1';
+  end
+
+  get '/detach/:id' do
+    video = session['api_session']
+    info = video.get_info(params[:id]);
+    tags = info['video'][0]['tags']['tag'];
+    tags.each do |tag|
+      video.remove_tag(params[:id], tag['id']) if tag['normalized'] == session['app_id'];
+    end
+    # response = video.remove_tag(params[:id], "#{session['app_id']}");
+    flash[:notice] = "Video detached from request."
+    # return info.to_s
+    redirect '/list/1';
+  end
+
+  get '/attach/:ids' do
+    video = session['api_session']
+    vidIds = params[:ids].to_s.split(',');
+
+    vidIds.each do |vidId|
+      video.add_tags(vidId, "#{session[:app_id]}")
+    end
+    redirect '/list/1'
   end
 
   get '/upload' do
@@ -142,7 +166,7 @@ class VimeoApp < Sinatra::Base
     end
   end
 
-  def get_user_vids vids, user_tag
+  def filter_vids_by_tag vids, user_tag
     isUser = false;
     userVids = [];
     vids = vids.to_a
