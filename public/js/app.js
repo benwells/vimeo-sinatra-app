@@ -9,6 +9,7 @@ $('document').ready(function() {
   $('#upload-form').on('submit', function(e) {
     e.preventDefault();
     $('[type=submit]').prop('disabled',true).html('Uploading, Please Wait... <i class="fa fa-spin fa-spinner">');
+    $('#uploadModal').modal('hide');
     $(this).off('submit').submit();
   });
 
@@ -16,5 +17,21 @@ $('document').ready(function() {
   setTimeout(function () {
     $('.alert-info').hide();
   }, 7000);
+
+  //video thumbnail click handler
+  $('.thumbnail').on('click', function () {
+    $(this).toggleClass('selected').find('.icon').toggle();
+  });
+
+  $('#attachVidBtn').on('click', function () {
+    var idArray = "";
+    $('.thumbnail').each(function (i, val) {
+      idArray += $(this).attr('id') + ',';
+    });
+
+    $.get('/attach/' + idArray, function (data) {
+      $('#vidListModal').modal('hide');
+    });
+  });
 
 });
