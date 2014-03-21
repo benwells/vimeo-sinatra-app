@@ -20,21 +20,30 @@ $('document').ready(function() {
 
   //video thumbnail click handler
   $('.thumbnail').on('click', function () {
+    var idStr = "";
     $(this).toggleClass('selected').find('.icon').toggle();
-  });
-
-  $('#attachVidBtn').on('click', function () {
-    var idArray = "";
-        
-    $(this).attr('disabled',true).html('Attaching... <i class="fa fa-spin fa-spinner">');
 
     $('.thumbnail').each(function (i, val) {
-      idArray += $(this).attr('id') + ',';
+      if ($(this).hasClass('selected')) {
+        idStr += $(this).attr('id') + ',';
+      }
     });
-
-    $.get('/attach/' + idArray, function (data) {
-      $('#vidListModal').modal('hide');
-    });
+    $('#attachVidBtn').attr('href', '/attach/' + idStr);
   });
+
+  // $('#attachVidBtn').on('click', function () {
+  //   var idArray = "";
+  //
+  //   $(this).attr('disabled',true).html('Attaching... <i class="fa fa-spin fa-spinner">');
+  //
+  //   $('.thumbnail').each(function (i, val) {
+  //     idArray += $(this).attr('id') + ',';
+  //   });
+  //
+  //   // $.get('/attach/' + idArray, function (data) {
+  //   //   $('#vidListModal').modal('hide');
+  //   //   $('#attachVidBtn').attr('disabled',false).html('Attach');
+  //   // });
+  // });
 
 });

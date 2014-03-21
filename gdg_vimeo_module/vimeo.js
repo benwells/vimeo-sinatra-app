@@ -20,6 +20,6 @@ rbf_selectQuery('SELECT vimeo_consumer_key, vimeo_consumer_secret, vimeo_access_
             applicationId;
 
 
-  container.appendTo('[name="Video Page"]');
+  container.appendTo('[name="Video Content Target"]');
   iframe.prop('src', url).appendTo('.flex-video');
 });
