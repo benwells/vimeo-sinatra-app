@@ -5,8 +5,15 @@
         %span.glyphicon.glyphicon-film
         Your Videos
 
-      .upload-btn{style:'display:block;text-align:right;'}
-        %a.btn.btn-success{href:'/upload'} Upload
+      .upload-btn{style:'display:block;text-align:center;'}
+        %a.btn.btn-primary.btn-lg{"data-toggle" => "modal", "data-target" => "#vidListModal"}
+          %i.fa.fa-video-camera.fa-2x
+          %br
+          Choose
+        %button.btn.btn-success.btn-lg{"data-toggle" => "modal", "data-target" => "#uploadModal"}
+          %i.fa.fa-cloud-upload.fa-2x
+          %br
+          Upload
 
       - if @totalVideos > 0
         .pages
@@ -34,7 +41,7 @@
 
       - if @totalVideos > 0
         %ul.media-list
-          - @videos.each do |video|
+          - @appVideos.each do |video|
             %li.media
               %a.pull-left{:href => '/view/' + video['id'] }
                 %img.media-object{:src => video['thumbnails']['thumbnail'][1]['_content']}
@@ -43,12 +50,62 @@
                   %span= video['title']
                 %p= video['description']
                 %p=  video['upload_date']
-              .btn-group.clearfix
-                %a.btn.btn-info.btn-mini{href:'/edit/' + video['id']}
+              .btn-group
+                %a.btn.btn-info{href:'/edit/' + video['id']}
                   %span.glyphicon.glyphicon-pencil
-                %a.btn.btn-success.btn-small{href:'/view/' + video['id']}
+                %a.btn.btn-success{href:'/view/' + video['id']}
                   %span.glyphicon.glyphicon-search
-                %a.btn.btn-danger.btn-small{onclick:'return confirm("Are you sure you want to delete this video?")', href:'/delete/' + video['id'] + '/' + video['title']}
-                  %span.glyphicon.glyphicon-remove
+                .btn-group
+                  %button.btn.btn-danger.dropdown-toggle{"data-toggle"=>"dropdown"}
+                    %span.glyphicon.glyphicon-remove
+                    %span.caret
+                  %ul.dropdown-menu{"role"=>"menu"}
+                    %li
+                      %a{href:'/detach/' + video['id']}
+                        Detach From Request
+                    %li
+                      %a{onclick:'return confirm("Are you sure you want to delete this video?")', href:'/delete/' + video['id'] + '/' + video['title']}
+                        Delete Permanently
 
-%p= @videosTest
+#uploadModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+        %h4#myModalLabel.modal-title Upload New Video
+      .modal-body
+        %form.alert{id:'upload-form', role: 'form', action:"/upload", method:"post", enctype:"multipart/form-data"}
+          .form-group
+            %label{for:'title'} Title
+            %input.form-control{type:"text", name:"title", id:'title'}
+          .form-group
+            %label{for:'description'} Description
+            %textarea.form-control{rows:'3', type:'text', name:'description', id:'description'}
+          .form-group
+            -# %label{for:'title'} File
+            %input.form-control{type:"file", name:"file", id:'file'}
+          -# %button.btn.btn-lg{type:"submit"} Submit
+          %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+          %button.btn.btn-primary{type: "submit"} Upload
+
+#vidListModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+        %h4#myModalLabel.modal-title You Video Library
+      .modal-body
+        .row
+          %p Please click on a video to attach it to this application.
+        .row
+          - @userVideos.each do |video|
+            .col-sm-3.col-md-3.col-xs-6
+              .thumbnail{id: video['id']}
+                %img.vid-thumbnail{:src => video['thumbnails']['thumbnail'][0]['_content']}
+                .caption
+                  %h5= video['title']
+                  .icon{style:'display:none;'}
+                    %i.fa.fa-check-circle-o
+                  %p
+      .modal-footer
+        %a.btn.btn-primary#attachVidBtn Save
