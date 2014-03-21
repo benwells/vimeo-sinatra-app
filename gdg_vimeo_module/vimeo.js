@@ -1,6 +1,7 @@
+
 rbf_selectQuery('SELECT vimeo_consumer_key, vimeo_consumer_secret, vimeo_access_token, vimeo_access_token_secret, vimeo_user_id FROM $SETTINGS', 1, function (vals) {
   var iframeWidth = '900px',
-      iframeHeight = '900px',
+      iframeHeight = '2000px',
       ck = vals[0][0],
       cs = vals[0][1],
       at = vals[0][2],
@@ -8,7 +9,7 @@ rbf_selectQuery('SELECT vimeo_consumer_key, vimeo_consumer_secret, vimeo_access_
       uid = vals[0][4],
       applicationId = getURLParameter('id'),
       visitorId = current_visitor.id,
-      iframe = $("<iframe></iframe>"),
+      iframe = $("<iframe height='" + iframeHeight + "'></iframe>"),
       container = $("<div class='flex-video widescreen'></div>"),
       url = "https://sinatra-blahaas.rhcloud.com/" +
             ck + "/" +
