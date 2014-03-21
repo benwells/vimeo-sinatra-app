@@ -37,7 +37,9 @@
       - if @totalVideos == 0
         %br
         %br
-        .alert.alert-warning Oops, you haven't uploaded any videos yet!
+        .alert.alert-warning
+          %h3 You haven't attached any videos yet!
+          %h5 Upload new videos using the Upload button above, or attach previously-uploaded videos by clicking the Choose button to view your video library.
 
       - if @totalVideos > 0
         %ul.media-list
@@ -93,10 +95,15 @@
     .modal-content
       .modal-header
         %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
-        %h4#myModalLabel.modal-title You Video Library
+        %h3#myModalLabel.modal-title Your Video Library
       .modal-body
         .row
-          %p Please click on a video to attach it to this application.
+          - if @userVideos.size == 0
+            .alert.alert-warning
+              %h3 You haven't uploaded any videos yet!
+              %h5 return to the main page and click the Upload button to upload new videos.
+          - if @userVideos.length > 0
+            %p Please click on a video to attach it to this application.
         .row
           - @userVideos.each do |video|
             .col-sm-3.col-md-3.col-xs-6
@@ -108,4 +115,4 @@
                     %i.fa.fa-check-circle-o
                   %p
       .modal-footer
-        %a.btn.btn-primary#attachVidBtn Save
+        %a.btn.btn-primary#attachVidBtn Attach

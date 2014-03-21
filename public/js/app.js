@@ -25,6 +25,9 @@ $('document').ready(function() {
 
   $('#attachVidBtn').on('click', function () {
     var idArray = "";
+        
+    $(this).attr('disabled',true).html('Attaching... <i class="fa fa-spin fa-spinner">');
+
     $('.thumbnail').each(function (i, val) {
       idArray += $(this).attr('id') + ',';
     });
