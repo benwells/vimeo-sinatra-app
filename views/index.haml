@@ -41,8 +41,8 @@
         .alert.alert-warning
           %h3 You haven't attached any videos yet!
           %h5 Upload new videos using the Upload button above, or attach previously-uploaded videos by clicking the Choose button to view your video library.
-      #list-container
-        - if @totalVideos > 0
+      - if @totalVideos > 0
+        #list-container
           %ul.media-list
             - @appVideos.each do |video|
               %li.media
