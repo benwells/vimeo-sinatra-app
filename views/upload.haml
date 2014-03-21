@@ -1,7 +1,12 @@
 .container-fluid
   .row-fluid
     .col-md-6.col-md-offset-3
-      %a.btn.btn-info.pull-left.btn-sm{href:'#', onclick: 'history.back(); return false;'} < Back
+      %h3.alert
+        %a{href:'#', onclick: '/list/1'}
+          %i.fa.fa-chevron-left
+        Upload Video
+        %span.glyphicon.glyphicon-film
+
       %br
       %h2 Upload A Video
       %form.alert{id:'upload-form', role: 'form', action:"/upload", method:"post", enctype:"multipart/form-data"}
@@ -14,4 +19,4 @@
         .form-group
           -# %label{for:'title'} File
           %input.form-control{type:"file", name:"file", id:'file'}
-        %button.btn.btn-lg{type:"submit"} Submit
+        %button.btn.btn-lg{type:"submit"} Upload
