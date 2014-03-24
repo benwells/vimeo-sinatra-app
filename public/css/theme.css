@@ -7,6 +7,10 @@
 .breadcrumb .disabled>a {
   color: #2D657D;
 }
+.btn-info {
+  border-radius:0px;
+  float:right;
+}
 /*changes to main area*/
 .container {
   margin-top: 30px;

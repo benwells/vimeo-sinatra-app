@@ -71,3 +71,6 @@ li.media {
 .selected{
   background: #DFF0D8;
 }
+#upload-form {
+  padding-bottom: 55px;
+}
