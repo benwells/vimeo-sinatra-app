@@ -13,15 +13,34 @@ $('document').ready(function() {
     $(this).off('submit').submit();
   });
 
-  //hide flash message after 7 seconds
+  //hide flash message after 5 seconds
   setTimeout(function () {
     $('.alert-info').hide();
-  }, 7000);
+  }, 5000);
+
+
+  //loop through thumbnails and make an initial assessment of selectedness
+  $('.thumbnail').each(function (i, val) {
+    if ($(val).hasClass('selected')) {
+      $(val).find('.icon').show();
+    }
+    else {
+      $(val).find('.icon').hide();
+    }
+  });
 
   //video thumbnail click handler
   $('.thumbnail').on('click', function () {
-    var idStr = "";
-    $(this).toggleClass('selected').find('.icon').toggle();
+    var idStr = "",
+        _this = $(this);
+
+    _this.toggleClass('selected');
+    if (_this.hasClass('selected')) {
+      _this.find('.icon').show();
+    }
+    else {
+      _this.find('.icon').hide();
+    }
 
     $('.thumbnail').each(function (i, val) {
       if ($(this).hasClass('selected')) {

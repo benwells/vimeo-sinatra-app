@@ -56,6 +56,13 @@ class VimeoApp < Sinatra::Base
     @userVideos = filter_vids_by_tag @videos['videos']['video'], session[:visitor_id];
     @appVideos = filter_vids_by_tag @userVideos, session[:app_id];
 
+    # give all user vids that intersect with appVideos a class attribute of 'selected'
+    @userVideos.each do |vid|
+      if (@appVideos.include? vid)
+        vid['class'] = 'selected'
+      end
+    end
+
     #set pagination variables
     @numPages = (@totalVideos / 5).ceil;
     @totalVideos = @appVideos.length if @appVideos
