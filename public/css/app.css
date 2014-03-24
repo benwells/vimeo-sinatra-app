@@ -8,7 +8,7 @@ body {
 .btn-group {
   display:none;
 }
-.btn-group .btn-info, .btn-group .btn-success {
+.btn-group .btn-primary, .btn-group .btn-success {
   padding-bottom: 12px;
 }
 .container {
