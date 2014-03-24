@@ -42,11 +42,7 @@ class VimeoApp < Sinatra::Base
     @totalVideos = 0
 
     #set first video of current page`
-    if @currentPage == 1
-      @firstVideo = 1;
-    else
-      @firstVideo = @currentPage * 5 - 4;
-    end
+    @currentPage == 1 ?  @firstVideo = 1 : @firstVideo = @currentPage * 5 - 4;
 
     #get all vids from vimeo account
     @videos = video.get_all(session['uid'], {
