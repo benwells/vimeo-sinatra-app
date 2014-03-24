@@ -36,8 +36,6 @@
                 %a{:href => ("/list/" + (@currentPage + 1).to_s unless @currentPage == @numPages )} &raquo;
 
       - if @totalVideos == 0
-        %br
-        %br
         .alert.alert-warning
           %h3 You haven't attached any videos yet!
           %h5 Upload new videos using the Upload button above, or attach previously-uploaded videos by clicking the Choose button to view your video library.
