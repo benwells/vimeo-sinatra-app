@@ -1,51 +1,16 @@
-/* background color of list view trs */
-tr.viewed {
-    background-color:transparent;
-}
-
-/* background color of list view header row */
-tr.objectListHeader {
-    background-color:transparent;
-}
-
-.breadcrumb {
-  background-color: #B3B5B6;
-}
-
 .breadcrumb .active>a {
   color: black;
 }
-
+.breadcrumb {
+  background-color: #B3B5B6;
+}
 .breadcrumb .disabled>a {
   color: #2D657D;
 }
-.pagination ul .active>a {
-  background-color: #B3B5B6;
-  color: black;
+/*changes to main area*/
+.container {
+  margin-top: 30px;
 }
-
-.pagination ul .active>a:hover {
-  cursor: pointer;
-}
-
-.pagination ul .disabled>a {
-  background-color: #fcfcfc;
-  color: #4090b3;
-}
-.pagination ul .disabled>a:hover {
-  cursor: pointer;
-}
-
-/* this is the class given to RB page sections */
-.rbsilverbg {
-    background-color: transparent;
-}
-
-#menu {
-  /* changes background color of left nav menu */
-    /*background: purple;*/
-}
-
 /*footer*/
 #footer {
 
@@ -59,16 +24,39 @@ tr.objectListHeader {
   color: white;
   opacity: 0.9;
 }
-
 footer {
   padding-top: 15px;
 }
-
-/*changes to main area*/
-.container {
-  margin-top: 30px;
+#menu {
+  /* changes background color of left nav menu */
+    /*background: purple;*/
 }
-
+.pagination ul .active>a {
+  background-color: #B3B5B6;
+  color: black;
+}
+.pagination ul .active>a:hover {
+  cursor: pointer;
+}
+.pagination ul .disabled>a {
+  background-color: #fcfcfc;
+  color: #4090b3;
+}
+.pagination ul .disabled>a:hover {
+  cursor: pointer;
+}
+/* this is the class given to RB page sections */
+.rbsilverbg {
+    background-color: transparent;
+}
+/* background color of list view header row */
+tr.objectListHeader {
+    background-color:transparent;
+}
+/* background color of list view trs */
+tr.viewed {
+    background-color:transparent;
+}
 /* changes to the top navbar */
 .navbar-inner {
   background-color: #9dbacc; /* fallback color, place your own. Changing this color will not take affect without also changing the gradient below. */
