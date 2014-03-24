@@ -196,6 +196,7 @@ hr {
 
 /* btn danger colors */
 .btn-danger{
+  border-radius:0px;
   background-color: #FF8566;
   border-color: #FF8566;
   color:white;

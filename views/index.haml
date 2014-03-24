@@ -114,4 +114,8 @@
                     = video['title']
                   %p
       .modal-footer
-        %a.btn.btn-primary#attachVidBtn Attach
+        %a.btn.btn-danger{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} Cancel
+        - if @userVideos.size == 0
+          %a.btn.btn-primary#attachVidBtn{disabled:'true'} Attach
+        - else
+          %a.btn.btn-primary#attachVidBtn Attach
