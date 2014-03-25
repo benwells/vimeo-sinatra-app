@@ -35,9 +35,9 @@ class VimeoApp < Sinatra::Base
       :secret => session['ats']
     );
 
-    if params[:mode] = 'e'
+    if params[:mode] == 'e'
       redirect '/list/1';
-    elsif params[:mode] = 'v'
+    elsif params[:mode] == 'v'
       redirect '/viewvids';
     end
   end
