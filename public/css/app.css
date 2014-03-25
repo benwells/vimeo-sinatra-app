@@ -81,6 +81,9 @@ li.media {
 #upload-form {
   padding-bottom: 55px;
 }
+#view-table th {
+  text-align:center;
+}
 .vid-thumbnail {
   position:relative;
 }

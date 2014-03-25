@@ -2,8 +2,6 @@ require 'sinatra/base'
 require "sinatra/config_file"
 require 'rack-flash'
 
-
-
 class VimeoApp < Sinatra::Base
   register Sinatra::FormKeeper
   register Sinatra::ConfigFile
@@ -45,7 +43,19 @@ class VimeoApp < Sinatra::Base
   end
 
   get '/viewvids' do
-    'test'
+    video = session['api_session']
+    #get all vids from vimeo account
+    @videos = video.get_all(session['uid'], {
+      :page => @currentPage,
+      :per_page => "5",
+      :full_response => "1",
+      :sort => "newest"
+    });
+
+    # get user videos and app videos
+    @userVideos = filter_vids_by_tag @videos['videos']['video'], session[:visitor_id];
+    @appVideos = filter_vids_by_tag @userVideos, session[:app_id];
+    haml :viewvids
   end
   get '/list/:page' do
 
