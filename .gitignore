@@ -1,4 +1,4 @@
 .DS_Store
 config/settings.yml
 settings.yml
-newrelic.yml
+config/newrelic.yml
