@@ -1,0 +1,16 @@
+.container-fluid
+  .row-fluid
+    .col-md-6.col-md-offset-3
+      %h3 Videos Attached to This Request
+      %table.table.table-striped#view-table
+        %thead
+          %th
+          %th Title
+          %th Date Uploaded
+        %tbody
+          - @appVideos.each do |video|
+            %tr
+              %td
+                %a.btn.btn-success{href:'/view/' + video['id']} View
+              %td= video['title']
+              %td= video['upload_date']
