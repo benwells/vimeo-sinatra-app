@@ -18,7 +18,7 @@ class VimeoApp < Sinatra::Base
   end
 
   # Initializer Route
-  get '/:key/:secret/:access_token/:access_token_secret/:user_id/:visitor_id/:app_id' do
+  get '/:key/:secret/:access_token/:access_token_secret/:user_id/:visitor_id/:app_id/:mode' do
 
     # store all API keys and user data in session hash
     session['ck'] = params[:key];
@@ -37,7 +37,10 @@ class VimeoApp < Sinatra::Base
       :secret => session['ats']
     );
 
-    redirect '/list/1';
+    if params[:mode] = 'e'
+      redirect '/list/1';
+    elsif params[:mode] = 'v'
+      redirect '/viewvids';
   end
 
   get '/list/:page' do
