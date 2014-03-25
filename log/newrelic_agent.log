@@ -1,0 +1,147 @@
+# Logfile created on 2014-03-25 10:18:36 -0400 by logger.rb/44203
+[03/25/14 10:18:36 -0400 x2tu.local (64438)] INFO : Starting the New Relic agent in "development" environment.
+[03/25/14 10:18:36 -0400 x2tu.local (64438)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "development" section of your newrelic.yml.
+[03/25/14 10:18:36 -0400 x2tu.local (64438)] INFO : Reading configuration from config/newrelic.yml
+[03/25/14 10:18:36 -0400 x2tu.local (64438)] INFO : Enabling the Request Sampler.
+[03/25/14 10:18:36 -0400 x2tu.local (64438)] INFO : Environment: development
+[03/25/14 10:18:36 -0400 x2tu.local (64438)] INFO : Dispatcher: webrick
+[03/25/14 10:18:36 -0400 x2tu.local (64438)] INFO : Application: My Application
+[03/25/14 10:18:36 -0400 x2tu.local (64438)] WARN : Agent configured not to send data in this environment.
+[03/25/14 10:18:36 -0400 x2tu.local (64438)] INFO : Installing Net instrumentation
+[03/25/14 10:18:36 -0400 x2tu.local (64438)] INFO : Installing Sinatra instrumentation
+[03/25/14 10:18:36 -0400 x2tu.local (64438)] INFO : Installing deferred Rack instrumentation
+[03/25/14 10:18:36 -0400 x2tu.local (64438)] INFO : Finished instrumentation
+[03/25/14 10:20:42 -0400 x2tu.local (64506)] INFO : Starting the New Relic agent in "development" environment.
+[03/25/14 10:20:42 -0400 x2tu.local (64506)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "development" section of your newrelic.yml.
+[03/25/14 10:20:42 -0400 x2tu.local (64506)] INFO : Reading configuration from config/newrelic.yml
+[03/25/14 10:20:42 -0400 x2tu.local (64506)] INFO : Enabling the Request Sampler.
+[03/25/14 10:20:42 -0400 x2tu.local (64506)] INFO : Environment: development
+[03/25/14 10:20:42 -0400 x2tu.local (64506)] INFO : Dispatcher: webrick
+[03/25/14 10:20:42 -0400 x2tu.local (64506)] INFO : Application: My Application
+[03/25/14 10:20:42 -0400 x2tu.local (64506)] WARN : Agent configured not to send data in this environment.
+[03/25/14 10:20:42 -0400 x2tu.local (64506)] INFO : Installing Net instrumentation
+[03/25/14 10:20:42 -0400 x2tu.local (64506)] INFO : Installing Sinatra instrumentation
+[03/25/14 10:20:42 -0400 x2tu.local (64506)] INFO : Installing deferred Rack instrumentation
+[03/25/14 10:20:42 -0400 x2tu.local (64506)] INFO : Finished instrumentation
+[03/25/14 10:20:44 -0400 x2tu.local (64510)] INFO : Starting the New Relic agent in "development" environment.
+[03/25/14 10:20:44 -0400 x2tu.local (64510)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "development" section of your newrelic.yml.
+[03/25/14 10:20:44 -0400 x2tu.local (64510)] INFO : Reading configuration from config/newrelic.yml
+[03/25/14 10:20:44 -0400 x2tu.local (64510)] INFO : Enabling the Request Sampler.
+[03/25/14 10:20:44 -0400 x2tu.local (64510)] INFO : Environment: development
+[03/25/14 10:20:44 -0400 x2tu.local (64510)] INFO : Dispatcher: webrick
+[03/25/14 10:20:44 -0400 x2tu.local (64510)] INFO : Application: My Application
+[03/25/14 10:20:44 -0400 x2tu.local (64510)] WARN : Agent configured not to send data in this environment.
+[03/25/14 10:20:44 -0400 x2tu.local (64510)] INFO : Installing Net instrumentation
+[03/25/14 10:20:44 -0400 x2tu.local (64510)] INFO : Installing Sinatra instrumentation
+[03/25/14 10:20:44 -0400 x2tu.local (64510)] INFO : Installing deferred Rack instrumentation
+[03/25/14 10:20:44 -0400 x2tu.local (64510)] INFO : Finished instrumentation
+[03/25/14 10:22:07 -0400 x2tu.local (64537)] INFO : Starting the New Relic agent in "development" environment.
+[03/25/14 10:22:07 -0400 x2tu.local (64537)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "development" section of your newrelic.yml.
+[03/25/14 10:22:07 -0400 x2tu.local (64537)] INFO : Reading configuration from config/newrelic.yml
+[03/25/14 10:22:07 -0400 x2tu.local (64537)] INFO : Enabling the Request Sampler.
+[03/25/14 10:22:07 -0400 x2tu.local (64537)] INFO : Environment: development
+[03/25/14 10:22:07 -0400 x2tu.local (64537)] INFO : Dispatcher: webrick
+[03/25/14 10:22:07 -0400 x2tu.local (64537)] INFO : Application: My Application
+[03/25/14 10:22:07 -0400 x2tu.local (64537)] WARN : Agent configured not to send data in this environment.
+[03/25/14 10:22:07 -0400 x2tu.local (64537)] INFO : Installing Net instrumentation
+[03/25/14 10:22:07 -0400 x2tu.local (64537)] INFO : Installing Sinatra instrumentation
+[03/25/14 10:22:07 -0400 x2tu.local (64537)] INFO : Installing deferred Rack instrumentation
+[03/25/14 10:22:07 -0400 x2tu.local (64537)] INFO : Finished instrumentation
+[03/25/14 10:23:42 -0400 x2tu.local (64579)] INFO : Starting the New Relic agent in "development" environment.
+[03/25/14 10:23:42 -0400 x2tu.local (64579)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "development" section of your newrelic.yml.
+[03/25/14 10:23:42 -0400 x2tu.local (64579)] INFO : Reading configuration from config/newrelic.yml
+[03/25/14 10:23:42 -0400 x2tu.local (64579)] INFO : Enabling the Request Sampler.
+[03/25/14 10:23:42 -0400 x2tu.local (64579)] INFO : Environment: development
+[03/25/14 10:23:42 -0400 x2tu.local (64579)] INFO : Dispatcher: webrick
+[03/25/14 10:23:42 -0400 x2tu.local (64579)] INFO : Application: My Application
+[03/25/14 10:23:42 -0400 x2tu.local (64579)] WARN : Agent configured not to send data in this environment.
+[03/25/14 10:23:42 -0400 x2tu.local (64579)] INFO : Installing Net instrumentation
+[03/25/14 10:23:42 -0400 x2tu.local (64579)] INFO : Installing Sinatra instrumentation
+[03/25/14 10:23:42 -0400 x2tu.local (64579)] INFO : Installing deferred Rack instrumentation
+[03/25/14 10:23:42 -0400 x2tu.local (64579)] INFO : Finished instrumentation
+[03/25/14 10:25:00 -0400 x2tu.local (64605)] INFO : Starting the New Relic agent in "development" environment.
+[03/25/14 10:25:00 -0400 x2tu.local (64605)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "development" section of your newrelic.yml.
+[03/25/14 10:25:00 -0400 x2tu.local (64605)] INFO : Reading configuration from config/newrelic.yml
+[03/25/14 10:25:00 -0400 x2tu.local (64605)] INFO : Enabling the Request Sampler.
+[03/25/14 10:25:00 -0400 x2tu.local (64605)] INFO : Environment: development
+[03/25/14 10:25:00 -0400 x2tu.local (64605)] INFO : Dispatcher: webrick
+[03/25/14 10:25:00 -0400 x2tu.local (64605)] INFO : Application: My Application
+[03/25/14 10:25:00 -0400 x2tu.local (64605)] WARN : Agent configured not to send data in this environment.
+[03/25/14 10:25:00 -0400 x2tu.local (64605)] INFO : Installing Net instrumentation
+[03/25/14 10:25:00 -0400 x2tu.local (64605)] INFO : Installing Sinatra instrumentation
+[03/25/14 10:25:00 -0400 x2tu.local (64605)] INFO : Installing deferred Rack instrumentation
+[03/25/14 10:25:00 -0400 x2tu.local (64605)] INFO : Finished instrumentation
+[03/25/14 10:25:16 -0400 x2tu.local (64618)] INFO : Starting the New Relic agent in "development" environment.
+[03/25/14 10:25:16 -0400 x2tu.local (64618)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "development" section of your newrelic.yml.
+[03/25/14 10:25:16 -0400 x2tu.local (64618)] INFO : Reading configuration from config/newrelic.yml
+[03/25/14 10:25:16 -0400 x2tu.local (64618)] INFO : Enabling the Request Sampler.
+[03/25/14 10:25:16 -0400 x2tu.local (64618)] INFO : Environment: development
+[03/25/14 10:25:16 -0400 x2tu.local (64618)] INFO : Dispatcher: webrick
+[03/25/14 10:25:16 -0400 x2tu.local (64618)] INFO : Application: My Application
+[03/25/14 10:25:16 -0400 x2tu.local (64618)] WARN : Agent configured not to send data in this environment.
+[03/25/14 10:25:16 -0400 x2tu.local (64618)] INFO : Installing Net instrumentation
+[03/25/14 10:25:16 -0400 x2tu.local (64618)] INFO : Installing Sinatra instrumentation
+[03/25/14 10:25:16 -0400 x2tu.local (64618)] INFO : Installing deferred Rack instrumentation
+[03/25/14 10:25:16 -0400 x2tu.local (64618)] INFO : Finished instrumentation
+[03/25/14 10:26:03 -0400 x2tu.local (64634)] INFO : Starting the New Relic agent in "development" environment.
+[03/25/14 10:26:03 -0400 x2tu.local (64634)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "development" section of your newrelic.yml.
+[03/25/14 10:26:03 -0400 x2tu.local (64634)] INFO : Reading configuration from config/newrelic.yml
+[03/25/14 10:26:03 -0400 x2tu.local (64634)] INFO : Enabling the Request Sampler.
+[03/25/14 10:26:03 -0400 x2tu.local (64634)] INFO : Environment: development
+[03/25/14 10:26:03 -0400 x2tu.local (64634)] INFO : Dispatcher: webrick
+[03/25/14 10:26:03 -0400 x2tu.local (64634)] INFO : Application: My Application
+[03/25/14 10:26:03 -0400 x2tu.local (64634)] WARN : Agent configured not to send data in this environment.
+[03/25/14 10:26:03 -0400 x2tu.local (64634)] INFO : Installing Net instrumentation
+[03/25/14 10:26:03 -0400 x2tu.local (64634)] INFO : Installing Sinatra instrumentation
+[03/25/14 10:26:03 -0400 x2tu.local (64634)] INFO : Installing deferred Rack instrumentation
+[03/25/14 10:26:03 -0400 x2tu.local (64634)] INFO : Finished instrumentation
+[03/25/14 10:26:06 -0400 x2tu.local (64638)] INFO : Starting the New Relic agent in "development" environment.
+[03/25/14 10:26:06 -0400 x2tu.local (64638)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "development" section of your newrelic.yml.
+[03/25/14 10:26:06 -0400 x2tu.local (64638)] INFO : Reading configuration from config/newrelic.yml
+[03/25/14 10:26:06 -0400 x2tu.local (64638)] INFO : Enabling the Request Sampler.
+[03/25/14 10:26:06 -0400 x2tu.local (64638)] INFO : Environment: development
+[03/25/14 10:26:06 -0400 x2tu.local (64638)] INFO : Dispatcher: webrick
+[03/25/14 10:26:06 -0400 x2tu.local (64638)] INFO : Application: My Application
+[03/25/14 10:26:06 -0400 x2tu.local (64638)] WARN : Agent configured not to send data in this environment.
+[03/25/14 10:26:06 -0400 x2tu.local (64638)] INFO : Installing Net instrumentation
+[03/25/14 10:26:06 -0400 x2tu.local (64638)] INFO : Installing Sinatra instrumentation
+[03/25/14 10:26:06 -0400 x2tu.local (64638)] INFO : Installing deferred Rack instrumentation
+[03/25/14 10:26:06 -0400 x2tu.local (64638)] INFO : Finished instrumentation
+[03/25/14 10:26:07 -0400 x2tu.local (64641)] INFO : Starting the New Relic agent in "development" environment.
+[03/25/14 10:26:07 -0400 x2tu.local (64641)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "development" section of your newrelic.yml.
+[03/25/14 10:26:07 -0400 x2tu.local (64641)] INFO : Reading configuration from config/newrelic.yml
+[03/25/14 10:26:07 -0400 x2tu.local (64641)] INFO : Enabling the Request Sampler.
+[03/25/14 10:26:07 -0400 x2tu.local (64641)] INFO : Environment: development
+[03/25/14 10:26:07 -0400 x2tu.local (64641)] INFO : Dispatcher: webrick
+[03/25/14 10:26:07 -0400 x2tu.local (64641)] INFO : Application: My Application
+[03/25/14 10:26:07 -0400 x2tu.local (64641)] WARN : Agent configured not to send data in this environment.
+[03/25/14 10:26:07 -0400 x2tu.local (64641)] INFO : Installing Net instrumentation
+[03/25/14 10:26:07 -0400 x2tu.local (64641)] INFO : Installing Sinatra instrumentation
+[03/25/14 10:26:07 -0400 x2tu.local (64641)] INFO : Installing deferred Rack instrumentation
+[03/25/14 10:26:07 -0400 x2tu.local (64641)] INFO : Finished instrumentation
+[03/25/14 10:26:23 -0400 x2tu.local (64653)] INFO : Starting the New Relic agent in "development" environment.
+[03/25/14 10:26:23 -0400 x2tu.local (64653)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "development" section of your newrelic.yml.
+[03/25/14 10:26:23 -0400 x2tu.local (64653)] INFO : Reading configuration from config/newrelic.yml
+[03/25/14 10:26:23 -0400 x2tu.local (64653)] INFO : Enabling the Request Sampler.
+[03/25/14 10:26:23 -0400 x2tu.local (64653)] INFO : Environment: development
+[03/25/14 10:26:23 -0400 x2tu.local (64653)] INFO : Dispatcher: webrick
+[03/25/14 10:26:23 -0400 x2tu.local (64653)] INFO : Application: My Application
+[03/25/14 10:26:23 -0400 x2tu.local (64653)] WARN : Agent configured not to send data in this environment.
+[03/25/14 10:26:23 -0400 x2tu.local (64653)] INFO : Installing Net instrumentation
+[03/25/14 10:26:23 -0400 x2tu.local (64653)] INFO : Installing Sinatra instrumentation
+[03/25/14 10:26:23 -0400 x2tu.local (64653)] INFO : Installing deferred Rack instrumentation
+[03/25/14 10:26:23 -0400 x2tu.local (64653)] INFO : Finished instrumentation
+[03/25/14 10:26:23 -0400 x2tu.local (64653)] INFO : Doing deferred dependency-detection before Rack startup
+[03/25/14 10:26:44 -0400 x2tu.local (64664)] INFO : Starting the New Relic agent in "development" environment.
+[03/25/14 10:26:44 -0400 x2tu.local (64664)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "development" section of your newrelic.yml.
+[03/25/14 10:26:44 -0400 x2tu.local (64664)] INFO : Reading configuration from config/newrelic.yml
+[03/25/14 10:26:44 -0400 x2tu.local (64664)] INFO : Enabling the Request Sampler.
+[03/25/14 10:26:44 -0400 x2tu.local (64664)] INFO : Environment: development
+[03/25/14 10:26:44 -0400 x2tu.local (64664)] INFO : Dispatcher: webrick
+[03/25/14 10:26:44 -0400 x2tu.local (64664)] INFO : Application: My Application
+[03/25/14 10:26:44 -0400 x2tu.local (64664)] WARN : Agent configured not to send data in this environment.
+[03/25/14 10:26:44 -0400 x2tu.local (64664)] INFO : Installing Net instrumentation
+[03/25/14 10:26:44 -0400 x2tu.local (64664)] INFO : Installing Sinatra instrumentation
+[03/25/14 10:26:44 -0400 x2tu.local (64664)] INFO : Installing deferred Rack instrumentation
+[03/25/14 10:26:44 -0400 x2tu.local (64664)] INFO : Finished instrumentation
+[03/25/14 10:26:45 -0400 x2tu.local (64664)] INFO : Doing deferred dependency-detection before Rack startup
