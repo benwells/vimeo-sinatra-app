@@ -44,6 +44,9 @@ class VimeoApp < Sinatra::Base
     end
   end
 
+  get '/viewvids' do
+    'test'
+  end
   get '/list/:page' do
 
     video = session['api_session']
