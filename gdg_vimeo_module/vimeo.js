@@ -1,4 +1,4 @@
-function init_vimeo_iframe () {
+function init_vimeo_iframe (mode) {
   rbf_selectQuery('SELECT vimeo_consumer_key, vimeo_consumer_secret, vimeo_access_token, vimeo_access_token_secret, vimeo_user_id FROM $SETTINGS', 1, function (vals) {
     var iframeWidth = '900px',
         iframeHeight = '2000px',
@@ -11,16 +11,17 @@ function init_vimeo_iframe () {
         visitorId = current_visitor.id,
         iframe = $("<iframe height='" + iframeHeight + "'></iframe>"),
         container = $("<div class='flex-video widescreen'></div>"),
-        url = "https://sinatra-blahaas.rhcloud.com/" +
-              ck + "/" +
-              cs + "/" +
-              at + "/" +
-              as + "/" +
-              uid + "/" +
-              visitorId + "/" +
-              applicationId;
+        url = ["https://sinatra-blahaas.rhcloud.com",
+              ck,
+              cs,
+              at,
+              as,
+              uid,
+              visitorId,
+              applicationId,
+              mode];
 
-
+    url = url.join('/');
     container.appendTo('[name="Video Content Target"]');
     iframe.prop('src', url).appendTo('.flex-video');
   });
@@ -28,7 +29,7 @@ function init_vimeo_iframe () {
 
 $('document').ready(function () {
   var g = getURLParameter('g');
-  if (g == portal_pages.video_page) {
-    init_vimeo_iframe();
+  if (g == portal_pages.video_edit_page) {
+    init_vimeo_iframe('e');
   }
 });
