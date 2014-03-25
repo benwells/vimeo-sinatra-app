@@ -1,5 +1,5 @@
 function init_vimeo_iframe (mode, height) {
-  rbf_selectQuery('SELECT vimeo_consumer_key, vimeo_consumer_secret, vimeo_access_token, vimeo_access_token_secret, vimeo_user_id FROM $SETTINGS', 1, function (vals) {
+  rbf_selectQuery('SELECT v_c_k, v_c_s, v_a_t, v_a_t_s, v_u_i FROM $SETTINGS', 1, function (vals) {
     var iframeWidth = '900px',
         ck = vals[0][0],
         cs = vals[0][1],
@@ -32,6 +32,9 @@ $('document').ready(function () {
     init_vimeo_iframe('e', '2000px');
   }
   else if (g == portal_pages.video_review_page) {
+    init_vimeo_iframe('v', '500px');
+  }
+  else if (g == portal_pages.video_view_page) {
     init_vimeo_iframe('v', '500px');
   }
 });
