@@ -1,5 +1,4 @@
 .DS_Store
 config/settings.yml
 settings.yml
-config/newrelic.yml
 log/newrelic_agent.log
