@@ -1,14 +1,20 @@
 require 'sinatra/base'
+require "sinatra/config_file"
 require 'rack-flash'
+
+
 
 class VimeoApp < Sinatra::Base
   register Sinatra::FormKeeper
+  register Sinatra::ConfigFile
   use Rack::Flash
 
   configure do
+    set :environment, :production
     enable :sessions
     set :session_secret, "Session Secret for shotgun development"
     set :protection, :except => :frame_options
+    config_file "config/settings.yml"
   end
 
   # Initializer Route
