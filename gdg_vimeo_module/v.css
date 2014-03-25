@@ -5,14 +5,16 @@
   height: 0;
   margin-bottom: 16px;
   overflow: hidden;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
 }
 
-.flex-video iframe {
+.flex-video iframe, iframe {
   position: absolute;
   top: 0;
   left: 0;
-  width: 99%;
-  height: 100%;
+  width: 100%;
   border:none;
 }
 
