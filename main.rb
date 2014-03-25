@@ -41,6 +41,7 @@ class VimeoApp < Sinatra::Base
       redirect '/list/1';
     elsif params[:mode] = 'v'
       redirect '/viewvids';
+    end
   end
 
   get '/list/:page' do
