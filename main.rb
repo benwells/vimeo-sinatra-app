@@ -129,25 +129,36 @@ class VimeoApp < Sinatra::Base
   end
 
   get '/detach/:id' do
-    video = session['api_session']
-    info = video.get_info(params[:id]);
-    tags = info['video'][0]['tags']['tag'];
-    tags.each do |tag|
-      video.remove_tag(params[:id], tag['id']) if tag['normalized'] == session['app_id'];
-    end
+    detach_app_from_video params[:id]
+    # video = session['api_session']
+    # info = video.get_info(params[:id]);
+    # tags = info['video'][0]['tags']['tag'];
+    # tags.each do |tag|
+    #   video.remove_tag(params[:id], tag['id']) if tag['normalized'] == session['app_id'];
+    # end
     # response = video.remove_tag(params[:id], "#{session['app_id']}");
     flash[:notice] = "Video detached from request."
     # return info.to_s
     redirect '/list/1';
   end
 
-  get '/attach/:ids' do
+  get '/attach/:ids/:detachIds' do
     video = session['api_session']
-    vidIds = params[:ids].to_s.split(',');
 
-    vidIds.each do |vidId|
-      video.add_tags(vidId, "#{session[:app_id]}")
+    if params[:ids] != '0'
+      vidsToAttach = params[:ids].to_s.split(',');
+      vidsToAttach.each do |vidId|
+        video.add_tags(vidId, "#{session[:app_id]}")
+      end
     end
+
+    if params[:detachIds] != '0'
+      vidsToDetach = params[:detachIds].to_s.split(',');
+      vidsToDetach.each do |vidId|
+        detach_app_from_video(vidId)
+      end
+    end
+    
     redirect '/list/1'
   end
 
@@ -207,6 +218,15 @@ class VimeoApp < Sinatra::Base
       end
     end
     return userVids
+  end
+
+  def detach_app_from_video vidId
+    video = session['api_session']
+    info = video.get_info(vidId);
+    tags = info['video'][0]['tags']['tag'];
+    tags.each do |tag|
+      video.remove_tag(vidId, tag['id']) if tag['normalized'] == session['app_id'];
+    end
   end
 
 end

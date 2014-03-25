@@ -32,6 +32,7 @@ $('document').ready(function() {
   //video thumbnail click handler
   $('.thumbnail').on('click', function () {
     var idStr = "",
+        detachStr = "",
         _this = $(this);
 
     _this.toggleClass('selected');
@@ -46,8 +47,20 @@ $('document').ready(function() {
       if ($(this).hasClass('selected')) {
         idStr += $(this).attr('id') + ',';
       }
+      else {
+        detachStr += $(this).attr('id') + ',';
+      }
     });
-    $('#attachVidBtn').attr('href', '/attach/' + idStr);
+
+    if (detachStr == "") {
+      detachStr = 0;
+    }
+
+    if (idStr == "") {
+      idStr = 0;
+    }
+
+    $('#attachVidBtn').attr('href', '/attach/' + idStr + '/' + detachStr);
   });
 
   // $('#attachVidBtn').on('click', function () {
