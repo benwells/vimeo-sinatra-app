@@ -45,9 +45,9 @@ class VimeoApp < Sinatra::Base
   get '/viewvids' do
     video = session['api_session']
     #get all vids from vimeo account
-    @videos = video.get_all(session['uid'], {
-      :page => @currentPage,
-      :per_page => "5",
+    @videos = video.get_all(session['user_id'], {
+      :page =>  1,
+      :per_page => "50",
       :full_response => "1",
       :sort => "newest"
     });
@@ -57,6 +57,7 @@ class VimeoApp < Sinatra::Base
     @appVideos = filter_vids_by_tag @userVideos, session[:app_id];
     haml :viewvids
   end
+
   get '/list/:page' do
 
     video = session['api_session']
@@ -68,16 +69,42 @@ class VimeoApp < Sinatra::Base
     @currentPage == 1 ?  @firstVideo = 1 : @firstVideo = @currentPage * 5 - 4;
 
     #get all vids from vimeo account
-    @videos = video.get_all(session['uid'], {
-      :page => @currentPage,
-      :per_page => "5",
-      :full_response => "1",
-      :sort => "newest"
-    });
+    # @videos = video.get_all(session['user_id'], {
+    #   :page => @currentPage,
+    #   :per_page => "50",
+    #   :full_response => "1",
+    #   :sort => "newest"
+    # });
+
+    @person = Vimeo::Advanced::Person.new(
+      session['ck'],
+      session['cs'],
+      :token => session['at'],
+      :secret => session['ats']
+    );
+
+    @person = @person.get_info(session['user_id'])
+    numUploads = @person['person']['number_of_uploads'].to_i
+    numpages = (numUploads / 50).ceil;
+
+    @ALLTHEVIDEOS = [];
+    for i in (1..numpages) do
+      vids = video.get_all(session['user_id'], {
+        :page => i,
+        :per_page => "50",
+        :full_response => "1",
+        :sort => "newest"
+      });
+
+      @ALLTHEVIDEOS.concat vids['videos']['video'];
+    end
+
 
     # get user videos and app videos
-    @userVideos = filter_vids_by_tag @videos['videos']['video'], session[:visitor_id];
+    @userVideos = filter_vids_by_tag @ALLTHEVIDEOS, session[:visitor_id];
     @appVideos = filter_vids_by_tag @userVideos, session[:app_id];
+    @appVideos = @appVideos.to_a;
+
 
     # give all user vids that intersect with appVideos a class attribute of 'selected'
     @userVideos.each do |vid|
@@ -87,9 +114,10 @@ class VimeoApp < Sinatra::Base
     end
 
     #set pagination variables
-    @numPages = (@totalVideos / 5).ceil;
     @totalVideos = @appVideos.length if @appVideos
-    @lastVideo = @totalVideos < 5 ? @totalVideos : @firstVideo.to_i + 4;
+    @lastVideo = @totalVideos < 5 ? @totalVideos : @firstVideo.to_i + 4 > @appVideos.length ? @appVideos.length : @firstVideos.to_i + 4;
+    @numPages = (@appVideos.length.to_f / 5).ceil;
+    @appVideos = @appVideos[@firstVideo-1..@lastVideo-1]
 
     haml :index
   end
@@ -158,7 +186,7 @@ class VimeoApp < Sinatra::Base
         detach_app_from_video(vidId)
       end
     end
-    
+
     redirect '/list/1'
   end
 
@@ -206,7 +234,6 @@ class VimeoApp < Sinatra::Base
   def filter_vids_by_tag vids, user_tag
     isUser = false;
     userVids = [];
-    vids = vids.to_a
 
     vids.each_with_index do |vid, i|
       isUser = false;
