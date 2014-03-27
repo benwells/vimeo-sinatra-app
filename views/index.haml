@@ -6,15 +6,15 @@
         %span.glyphicon.glyphicon-film
 
       .upload-btn{style:'display:block;text-align:center;'}
+        %a.btn.btn-success.btn-lg{href:'/upload'}
+          %i.fa.fa-cloud-upload.fa-2x
+          %br
+          Upload
         %a.btn.btn-primary.btn-lg{"data-toggle" => "modal", "data-target" => "#vidListModal"}
           %i.fa.fa-video-camera.fa-2x
           %br
           Choose
         -# %button.btn.btn-success.btn-lg{"data-toggle" => "modal", "data-target" => "#uploadModal"}
-        %a.btn.btn-success.btn-lg{href:'/upload'}
-          %i.fa.fa-cloud-upload.fa-2x
-          %br
-          Upload
 
       - if @totalVideos > 0
         .pages
