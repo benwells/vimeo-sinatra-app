@@ -44,7 +44,7 @@
           %ul.media-list
             - @appVideos.each do |video|
               %li.media
-                .vid-thumbnail.pull-left{style: "height:150px;width:200px;background:url(" + video['thumbnails']['thumbnail'][1]['_content'] + ");"}
+                .vid-thumbnail.pull-left{style: "height:150px;width:200px;background:url(" + video['thumbnails']['thumbnail'][1]['_content'].gsub!('http://b.', 'https://secure-b.') + ");"}
                   #btnContainer
                     .btn-group.dropup
                       %a.btn.btn-primary{href:'/edit/' + video['id']}
