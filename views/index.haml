@@ -107,7 +107,7 @@
           - @userVideos.each do |video|
             .col-sm-3.col-md-3.col-xs-6
               .thumbnail{id: video['id'], class: video['class']}
-                .vid-thumbnail{style: "margin:0 auto;height:75px;width:100px;background:url(" + video['thumbnails']['thumbnail'][1]['_content'].gsub!('http://b.', 'https://secure-b.') + ");"}
+                .vid-thumbnail{style: "margin:0 auto;height:75px;width:100px;background:url(" + video['thumbnails']['thumbnail'][0]['_content'].gsub!('http://b.', 'https://secure-b.')  + ");"}
                   %i.icon.fa.fa-check-circle-o.fa-4x{style:'margin-top:9px;'}
                 .caption
                   %h5
