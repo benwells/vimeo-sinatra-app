@@ -43,7 +43,7 @@
           %ul.media-list
             - @appVideos.each do |video|
               %li.media
-                .vid-thumbnail.pull-left{style: "height:150px;width:200px;background:url(" + video['thumbnails']['thumbnail'][1]['_content'].gsub!('http://b.', 'https://secure-b.') + ");"}
+                .vid-thumbnail.pull-left{style: "height:150px;width:200px;background:url(" + video['thumbnails']['thumbnail'][1]['_content'] + ");"}
                   #btnContainer
                     .btn-group.dropup
                       %a.btn.btn-primary{href:'/edit/' + video['id']}
@@ -106,7 +106,7 @@
           - @userVideos.each do |video|
             .col-sm-3.col-md-3.col-xs-6
               .thumbnail{id: video['id'], class: video['class']}
-                .vid-thumbnail{style: "margin:0 auto;height:75px;width:100px;background:url(" + video['thumbnails']['thumbnail'][0]['_content'].gsub!('http://b.', 'https://secure-b.')  + ");"}
+                .vid-thumbnail{style: "margin:0 auto;height:75px;width:100px;background:url(" + video['thumbnails']['thumbnail'][0]['_content']  + ");"}
                   %i.icon.fa.fa-check-circle-o.fa-4x{style:'margin-top:9px;'}
                 .caption
                   %h5
