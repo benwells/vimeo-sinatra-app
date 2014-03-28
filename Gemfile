@@ -7,4 +7,8 @@ gem "vimeo"
 gem "haml"
 gem 'newrelic_rpm'
 gem 'sinatra-contrib'
-gem 'rspec'
+
+
+group :development, :test do
+  gem 'rspec'
+end
