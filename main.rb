@@ -1,6 +1,9 @@
-require 'sinatra/base'
+require "sinatra/base"
 require "sinatra/config_file"
-require 'rack-flash'
+require "rack-flash"
+require "sinatra/formkeeper"
+
+
 
 class VimeoApp < Sinatra::Base
   register Sinatra::FormKeeper
@@ -13,6 +16,14 @@ class VimeoApp < Sinatra::Base
     set :session_secret, "Session Secret for shotgun development"
     set :protection, :except => :frame_options
     config_file "config/settings.yml"
+  end
+
+  def reverse string
+    return string.reverse
+  end
+
+  get '/' do
+
   end
 
   # Initializer Route
@@ -196,39 +207,39 @@ class VimeoApp < Sinatra::Base
 
   post '/upload' do
 
-    form do
-      field :file,   :present => true
-    end
-
-    if form.failed?
-      flash[:notice] = "You must choose a file."
-      redirect '/upload';
-    else
-      tmpfile = params[:file][:tempfile]
-      # name = params[:file][:filename]
-
-      upload = Vimeo::Advanced::Upload.new(session['ck'],
-        session['cs'],
-        :token => session['at'],
-        :secret => session['ats']
-      );
-
-      # upload the file
-      response = upload.upload(tmpfile);
-
-      if response["stat"] == "ok"
-        newVideoId = response['ticket']['video_id']
-        video = session['api_session']
-        video.set_description(newVideoId, params[:description])
-        video.set_title(newVideoId, params[:title])
-        video.add_tags(newVideoId, "#{session[:visitor_id]}, #{session[:app_id]}")
-        flash[:notice] = "Video Uploaded Successfully."
-        redirect "/list/1"
-      else
-        flash[:notice] = "Oops, something went wrong. Please try again."
-        redirect "/upload"
-      end
-    end
+    # form do
+    #   field :file,   :present => true
+    # end
+    #
+    # if form.failed?
+    #   flash[:notice] = "You must choose a file."
+    #   redirect '/upload';
+    # else
+    #   tmpfile = params[:file][:tempfile]
+    #   # name = params[:file][:filename]
+    #
+    #   upload = Vimeo::Advanced::Upload.new(session['ck'],
+    #     session['cs'],
+    #     :token => session['at'],
+    #     :secret => session['ats']
+    #   );
+    #
+    #   # upload the file
+    #   response = upload.upload(tmpfile);
+    #
+    #   if response["stat"] == "ok"
+    #     newVideoId = response['ticket']['video_id']
+    #     video = session['api_session']
+    #     video.set_description(newVideoId, params[:description])
+    #     video.set_title(newVideoId, params[:title])
+    #     video.add_tags(newVideoId, "#{session[:visitor_id]}, #{session[:app_id]}")
+    #     flash[:notice] = "Video Uploaded Successfully."
+    #     redirect "/list/1"
+    #   else
+    #     flash[:notice] = "Oops, something went wrong. Please try again."
+    #     redirect "/upload"
+    #   end
+    # end
   end
 
   def filter_vids_by_tag vids, user_tag
