@@ -1,9 +1,9 @@
 $('document').ready(function() {
 
   // show btn toolbar on hover
-  $('.media-list li').hover(function () {
-    $(this).find('#btnContainer').toggle();
-  });
+  // $('.media-list li, .slickel').hover(function () {
+  //   $(this).find('#btnContainer').toggle();
+  // });
 
   //upload form stuff
   $('#upload-form').on('submit', function(e) {
@@ -77,5 +77,14 @@ $('document').ready(function() {
   //   //   $('#attachVidBtn').attr('disabled',false).html('Attach');
   //   // });
   // });
+
+  $('#slickcontainer').slick({
+    dots: true,
+    infinite: false,
+    speed: 300,
+    slidesToShow: 3,
+    // touchMove: true,
+    slidesToScroll: 1
+  })
 
 });
