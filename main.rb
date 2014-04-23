@@ -47,7 +47,7 @@ class VimeoApp < Sinatra::Base
     );
 
     if params[:mode] == 'e'
-      redirect '/list/1';
+      redirect '/list';
     elsif params[:mode] == 'v'
       redirect '/viewvids';
     end
@@ -69,15 +69,15 @@ class VimeoApp < Sinatra::Base
     haml :viewvids
   end
 
-  get '/list/:page' do
+  get '/list' do
 
     video = session['api_session']
-    @currentPage = params[:page].to_i
+    # @currentPage = params[:page].to_i
     @lastVideo
     @totalVideos = 0
 
     #set first video of current page`
-    @currentPage == 1 ?  @firstVideo = 1 : @firstVideo = @currentPage * 5 - 4;
+    # @currentPage == 1 ?  @firstVideo = 1 : @firstVideo = @currentPage * 5 - 4;
 
     #get all vids from vimeo account
     # @videos = video.get_all(session['user_id'], {
@@ -126,9 +126,9 @@ class VimeoApp < Sinatra::Base
 
     #set pagination variables
     @totalVideos = @appVideos.length if @appVideos
-    @lastVideo = @totalVideos < 5 ? @totalVideos : @firstVideo.to_i + 4 > @appVideos.length ? @appVideos.length : @firstVideos.to_i + 4;
-    @numPages = (@appVideos.length.to_f / 5).ceil;
-    @appVideos = @appVideos[@firstVideo-1..@lastVideo-1]
+    # @lastVideo = @totalVideos < 5 ? @totalVideos : @firstVideo.to_i + 4 > @appVideos.length ? @appVideos.length : @firstVideos.to_i + 4;
+    # @numPages = (@appVideos.length.to_f / 5).ceil;
+    # @appVideos = @appVideos[@firstVideo-1..@lastVideo-1]
 
     haml :index
   end
@@ -217,7 +217,7 @@ class VimeoApp < Sinatra::Base
     else
       tmpfile = params[:file][:tempfile]
       # name = params[:file][:filename]
-    
+
       upload = Vimeo::Advanced::Upload.new(session['ck'],
         session['cs'],
         :token => session['at'],
