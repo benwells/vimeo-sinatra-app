@@ -157,14 +157,14 @@ class VimeoApp < Sinatra::Base
     video.set_title(@id, @title);
 
     # "#{@title} #{@description} #{@id}"
-    redirect '/list/1';
+    redirect '/list';
   end
 
   get '/delete/:id/:title' do
     video = session['api_session']
     video.delete(params[:id]);
     flash[:notice] = "The Video '#{params[:title]}' has been deleted."
-    redirect '/list/1';
+    redirect '/list';
   end
 
   get '/detach/:id' do
@@ -178,7 +178,7 @@ class VimeoApp < Sinatra::Base
     # response = video.remove_tag(params[:id], "#{session['app_id']}");
     flash[:notice] = "Video detached from request."
     # return info.to_s
-    redirect '/list/1';
+    redirect '/list';
   end
 
   get '/attach/:ids/:detachIds' do
@@ -198,7 +198,7 @@ class VimeoApp < Sinatra::Base
       end
     end
 
-    redirect '/list/1'
+    redirect '/list'
   end
 
   get '/upload' do
@@ -234,7 +234,7 @@ class VimeoApp < Sinatra::Base
         video.set_title(newVideoId, params[:title])
         video.add_tags(newVideoId, "#{session[:visitor_id]}, #{session[:app_id]}")
         flash[:notice] = "Video Uploaded Successfully."
-        redirect "/list/1"
+        redirect "/list"
       else
         flash[:notice] = "Oops, something went wrong. Please try again."
         redirect "/upload"
