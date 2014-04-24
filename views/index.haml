@@ -4,8 +4,8 @@
       %h3.alert
         My Videos
         %span.glyphicon.glyphicon-film
-
-      .upload-btn{style:'display:block;text-align:center;'}
+      %p{style: "margin-bottom:30px;width:70%;margin:0 auto;"} Click Upload to upload a new video and attach it to this application.  Click Choose to attach your previously-uploaded videos to this application.
+      .upload-btn{style:'display:block;text-align:center;margin-top:20px;'}
         %a.btn.btn-success.btn-lg{href:'/upload'}
           %i.fa.fa-cloud-upload.fa-2x
           %br
@@ -77,8 +77,9 @@
               %h3 You haven't uploaded any videos yet!
               %h5 return to the main page and click the Upload button to upload new videos.
           - if @userVideos.length > 0
-            %p Please click on a video to attach it to this application.
-        .row
+            %small{style: "color:grey;"}
+              %i Please click on videos to attach/detach them to this application. Videos highlighted in green with a checkbox will be attached to your application when you click "Update". Videos not selected will be detached.
+        .row{style:"margin-top:10px;"}
           - @userVideos.each do |video|
             .col-sm-3.col-md-3.col-xs-6
               .thumbnail{id: video['id'], class: video['class']}
@@ -91,6 +92,6 @@
       .modal-footer
         %a.btn.btn-danger{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} Cancel
         - if @userVideos.size == 0
-          %a.btn.btn-info#attachVidBtn{disabled:'true'} Attach
+          %a.btn.btn-info#attachVidBtn{disabled:'true'} Update
         - else
-          %a.btn.btn-info#attachVidBtn Attach
+          %a.btn.btn-info#attachVidBtn Update
