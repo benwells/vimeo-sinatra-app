@@ -1,9 +1,9 @@
 $('document').ready(function() {
 
   // show btn toolbar on hover
-  $('.media-list li').hover(function () {
-    $(this).find('#btnContainer').toggle();
-  });
+  // $('.media-list li, .slickel').hover(function () {
+  //   $(this).find('#btnContainer').toggle();
+  // });
 
   //upload form stuff
   $('#upload-form').on('submit', function(e) {
@@ -78,4 +78,69 @@ $('document').ready(function() {
   //   // });
   // });
 
+  $('#slickcontainer').slick({
+    dots: true,
+    infinite: false,
+    speed: 300,
+    slidesToShow: 3,
+    // touchMove: true,
+    slidesToScroll: 1
+  });
+
 });
+
+
+function modalDelete(id, title) {
+  $('#' + id).off('click');
+  var vidId = id,
+      vidTitle = title,
+      confirmation = confirm("Are you sure you want to delete this video?");
+
+  if (confirmation) {
+    $('#' + id).find('.fa-check-circle-o').removeClass('fa-check-circle-o').addClass('fa-spinner fa-spin')
+    $.get('/delete/' + vidId + '/' + vidTitle, function(data) {
+      $('#' + id).remove();
+      alert("This video has been successfully deleted");
+    }).fail(function(){
+      alert("Oops! Something went wrong, please try again");
+      $('#' + id).find('.fa-spinner').removeClass('fa-spinner fa-spin').addClass('fa-check-circle-o')
+    });
+  }
+  else {
+    $('#' + id).on('click', vidClickHandler).click();
+    return;
+  }
+}
+
+function vidClickHandler() {
+  var idStr = "",
+      detachStr = "",
+      _this = $(this);
+
+    _this.toggleClass('selected');
+    if (_this.hasClass('selected')) {
+      _this.find('.icon').show();
+    }
+    else {
+      _this.find('.icon').hide();
+    }
+
+    $('.thumbnail').each(function (i, val) {
+      if ($(this).hasClass('selected')) {
+        idStr += $(this).attr('id') + ',';
+      }
+      else {
+        detachStr += $(this).attr('id') + ',';
+      }
+    });
+
+    if (detachStr == "") {
+      detachStr = 0;
+    }
+
+    if (idStr == "") {
+      idStr = 0;
+    }
+
+    $('#attachVidBtn').attr('href', '/attach/' + idStr + '/' + detachStr);
+}

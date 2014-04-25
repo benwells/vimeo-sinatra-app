@@ -47,7 +47,7 @@ class VimeoApp < Sinatra::Base
     );
 
     if params[:mode] == 'e'
-      redirect '/list/1';
+      redirect '/list';
     elsif params[:mode] == 'v'
       redirect '/viewvids';
     end
@@ -69,15 +69,15 @@ class VimeoApp < Sinatra::Base
     haml :viewvids
   end
 
-  get '/list/:page' do
+  get '/list' do
 
     video = session['api_session']
-    @currentPage = params[:page].to_i
+    # @currentPage = params[:page].to_i
     @lastVideo
     @totalVideos = 0
 
     #set first video of current page`
-    @currentPage == 1 ?  @firstVideo = 1 : @firstVideo = @currentPage * 5 - 4;
+    # @currentPage == 1 ?  @firstVideo = 1 : @firstVideo = @currentPage * 5 - 4;
 
     #get all vids from vimeo account
     # @videos = video.get_all(session['user_id'], {
@@ -126,9 +126,9 @@ class VimeoApp < Sinatra::Base
 
     #set pagination variables
     @totalVideos = @appVideos.length if @appVideos
-    @lastVideo = @totalVideos < 5 ? @totalVideos : @firstVideo.to_i + 4 > @appVideos.length ? @appVideos.length : @firstVideos.to_i + 4;
-    @numPages = (@appVideos.length.to_f / 5).ceil;
-    @appVideos = @appVideos[@firstVideo-1..@lastVideo-1]
+    # @lastVideo = @totalVideos < 5 ? @totalVideos : @firstVideo.to_i + 4 > @appVideos.length ? @appVideos.length : @firstVideos.to_i + 4;
+    # @numPages = (@appVideos.length.to_f / 5).ceil;
+    # @appVideos = @appVideos[@firstVideo-1..@lastVideo-1]
 
     haml :index
   end
@@ -157,14 +157,14 @@ class VimeoApp < Sinatra::Base
     video.set_title(@id, @title);
 
     # "#{@title} #{@description} #{@id}"
-    redirect '/list/1';
+    redirect '/list';
   end
 
   get '/delete/:id/:title' do
     video = session['api_session']
     video.delete(params[:id]);
     flash[:notice] = "The Video '#{params[:title]}' has been deleted."
-    redirect '/list/1';
+    redirect '/list';
   end
 
   get '/detach/:id' do
@@ -178,7 +178,7 @@ class VimeoApp < Sinatra::Base
     # response = video.remove_tag(params[:id], "#{session['app_id']}");
     flash[:notice] = "Video detached from request."
     # return info.to_s
-    redirect '/list/1';
+    redirect '/list';
   end
 
   get '/attach/:ids/:detachIds' do
@@ -198,7 +198,7 @@ class VimeoApp < Sinatra::Base
       end
     end
 
-    redirect '/list/1'
+    redirect '/list'
   end
 
   get '/upload' do
@@ -217,7 +217,7 @@ class VimeoApp < Sinatra::Base
     else
       tmpfile = params[:file][:tempfile]
       # name = params[:file][:filename]
-    
+
       upload = Vimeo::Advanced::Upload.new(session['ck'],
         session['cs'],
         :token => session['at'],
@@ -234,7 +234,7 @@ class VimeoApp < Sinatra::Base
         video.set_title(newVideoId, params[:title])
         video.add_tags(newVideoId, "#{session[:visitor_id]}, #{session[:app_id]}")
         flash[:notice] = "Video Uploaded Successfully."
-        redirect "/list/1"
+        redirect "/list"
       else
         flash[:notice] = "Oops, something went wrong. Please try again."
         redirect "/upload"

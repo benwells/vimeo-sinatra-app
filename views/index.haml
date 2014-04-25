@@ -4,8 +4,8 @@
       %h3.alert
         My Videos
         %span.glyphicon.glyphicon-film
-
-      .upload-btn{style:'display:block;text-align:center;'}
+      %p{style: "margin-bottom:30px;width:70%;margin:0 auto;"} Click Upload to upload a new video and attach it to this application.  Click Choose to attach your previously-uploaded videos to this application.
+      .upload-btn{style:'display:block;text-align:center;margin-top:20px;'}
         %a.btn.btn-success.btn-lg{href:'/upload'}
           %i.fa.fa-cloud-upload.fa-2x
           %br
@@ -15,57 +15,33 @@
           %br
           Choose
 
-      - if @totalVideos > 0
-        .pages
-          %small.clearfix
-            Showing Videos
-            = @firstVideo
-            to
-            = @lastVideo
-            of
-            = @totalVideos
-          - if @totalVideos > 5
-            %ul.pagination
-              %li
-                %a.active{:href => ("/list/" + (@currentPage - 1).to_s unless @currentPage == 1 )} &laquo;
-              - (1..@numPages).each do |val|
-                %li{:class => ("disabled" unless val != @currentPage)}
-                  %a{href:"/list/" + val.to_s}= val
-              %li
-                %a{:href => ("/list/" + (@currentPage + 1).to_s unless @currentPage == @numPages )} &raquo;
-
       - if @totalVideos == 0
         .alert.alert-warning
           %h3 You haven't attached any videos yet!
           %h5 Upload new videos using the Upload button above, or attach previously-uploaded videos by clicking the Choose button to view your video library.
       - if @totalVideos > 0
-        #list-container
-          %ul.media-list
-            - @appVideos.each do |video|
-              %li.media
-                .vid-thumbnail.pull-left{style: "height:150px;width:200px;background:url(" + video['thumbnails']['thumbnail'][1]['_content'] + ");"}
-                  #btnContainer
-                    .btn-group.dropup
-                      %a.btn.btn-primary{href:'/edit/' + video['id']}
-                        %span.glyphicon.glyphicon-pencil
-                      %a.btn.btn-success{href:'/view/' + video['id']}
-                        %span.glyphicon.glyphicon-film
-                      .btn-group
-                        %button.btn.btn-danger.dropdown-toggle{"data-toggle"=>"dropdown"}
-                          %span.glyphicon.glyphicon-remove
-                          %span.caret
-                        %ul.dropdown-menu{"role"=>"menu"}
-                          %li
-                            %a{href:'/detach/' + video['id']}
-                              Detach From Request
-                          %li
-                            %a{onclick:'return confirm("Are you sure you want to delete this video?")', href:'/delete/' + video['id'] + '/' + video['title']}
-                              Delete Permanently
-                .media-body
-                  %h4
-                    %span= video['title']
-                  %p=  video['upload_date']
-                  %p= video['description']
+        %div#slickcontainer
+          - @appVideos.each do |video|
+            .slickel
+              %img{src:video['thumbnails']['thumbnail'][1]['_content'], style:"border:1px solid black;border-radius:5px;"}
+                #btnContainer
+                  .btn-group.dropup
+                    %a.btn.btn-primary{href:'/edit/' + video['id']}
+                      %span.glyphicon.glyphicon-pencil
+                    %a.btn.btn-success{href:'/view/' + video['id']}
+                      %span.glyphicon.glyphicon-film
+                    .btn-group
+                      %button.btn.btn-danger.dropdown-toggle{"data-toggle"=>"dropdown"}
+                        %span.glyphicon.glyphicon-remove
+                        %span.caret
+                      %ul.dropdown-menu{"role"=>"menu"}
+                        %li
+                          %a{href:'/detach/' + video['id']}
+                            Detach
+                        %li
+                          %a{onclick:'return confirm("Are you sure you want to delete this video?")', href:'/delete/' + video['id'] + '/' + video['title']}
+                            Delete
+
 
 #uploadModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1", 'data-backdrop' => 'static', 'data-keyboard' => 'false'}
   .modal-dialog
@@ -101,8 +77,9 @@
               %h3 You haven't uploaded any videos yet!
               %h5 return to the main page and click the Upload button to upload new videos.
           - if @userVideos.length > 0
-            %p Please click on a video to attach it to this application.
-        .row
+            %small{style: "color:grey;"}
+              %i Please click on videos to attach/detach them to this application. Videos highlighted in green with a checkbox will be attached to your application when you click "Update". Videos not selected will be detached.
+        .row{style:"margin-top:10px;height:200px;overflow-x:hidden;overflow-y:scroll;"}
           - @userVideos.each do |video|
             .col-sm-3.col-md-3.col-xs-6
               .thumbnail{id: video['id'], class: video['class']}
@@ -111,10 +88,11 @@
                 .caption
                   %h5
                     = video['title']
-                  %p
+                  %a{ onclick:'modalDelete(' + video['id'] + ',"' + video['title'] +'")'}
+                    %i.icon.fa.fa-trash-o{style:'margin-top:9px;'}
       .modal-footer
         %a.btn.btn-danger{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} Cancel
         - if @userVideos.size == 0
-          %a.btn.btn-info#attachVidBtn{disabled:'true'} Attach
+          %a.btn.btn-info#attachVidBtn{disabled:'true'} Update
         - else
-          %a.btn.btn-info#attachVidBtn Attach
+          %a.btn.btn-info#attachVidBtn Update
