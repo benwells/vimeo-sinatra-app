@@ -5,7 +5,7 @@ gem "rack-flash3"
 gem "shotgun"
 gem "vimeo"
 gem "haml"
-gem 'newrelic_rpm'
+# gem 'newrelic_rpm'
 gem 'sinatra-contrib'
 
 
