@@ -42,28 +42,6 @@
                           %a{onclick:'return confirm("Are you sure you want to delete this video?")', href:'/delete/' + video['id'] + '/' + video['title']}
                             Delete
 
-
-#uploadModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1", 'data-backdrop' => 'static', 'data-keyboard' => 'false'}
-  .modal-dialog
-    .modal-content
-      .modal-header
-        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
-        %h4#myModalLabel.modal-title Upload New Video
-      .modal-body
-        %form.alert{id:'upload-form', role: 'form', action:"/upload", method:"post", enctype:"multipart/form-data"}
-          .form-group
-            %label{for:'title'} Title
-            %input.form-control{type:"text", name:"title", id:'title'}
-          .form-group
-            %label{for:'description'} Description
-            %textarea.form-control{rows:'3', type:'text', name:'description', id:'description'}
-          .form-group
-            %label{for:'file'} File
-            %input.form-control{type:"file", name:"file", id:'file'}
-          -# %button.btn.btn-lg{type:"submit"} Submit
-          -# %button.btn.btn-success{"data-dismiss" => "modal", type: "button"} Close
-          %button.btn.btn-primary{type: "submit"} Upload
-
 #vidListModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1",'data-backdrop' => 'static', 'data-keyboard' => 'false'}
   .modal-dialog
     .modal-content
