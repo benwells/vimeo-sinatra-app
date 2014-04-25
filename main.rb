@@ -37,6 +37,7 @@ class VimeoApp < Sinatra::Base
     session['user_id'] = params[:user_id].to_s;
     session['visitor_id'] = 'u' + params[:visitor_id].to_s;
     session['app_id'] = 'a' + params[:app_id].to_s;
+    session['mode'] = params[:mode]
 
     # create api session and store it in the session
     session['api_session'] = Vimeo::Advanced::Video.new(
@@ -176,9 +177,13 @@ class VimeoApp < Sinatra::Base
     #   video.remove_tag(params[:id], tag['id']) if tag['normalized'] == session['app_id'];
     # end
     # response = video.remove_tag(params[:id], "#{session['app_id']}");
-    flash[:notice] = "Video detached from request."
     # return info.to_s
-    redirect '/list';
+    if session['mode'] == "v"
+      redirect '/viewvids'
+    else
+      flash[:notice] = "Video detached from request."
+      redirect '/list';
+    end
   end
 
   get '/attach/:ids/:detachIds' do

@@ -11,5 +11,6 @@
             %tr
               %td
                 %a.btn.btn-success{href:'/view/' + video['id']} View
+                %a.btn.btn-primary{href:'/detach/' + video['id'], onclick:'return confirm("Are you sure you want to detach this video?")'} Detach
               %td= video['title']
               %td= video['upload_date']
