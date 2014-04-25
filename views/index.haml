@@ -57,7 +57,7 @@
           - if @userVideos.length > 0
             %small{style: "color:grey;"}
               %i Please click on videos to attach/detach them to this application. Videos highlighted in green with a checkbox will be attached to your application when you click "Update". Videos not selected will be detached.
-        .row{style:"margin-top:10px;height:200px;overflow-x:hidden;overflow-y:scroll;"}
+        .row{style:"margin-top:10px;height:160px;overflow-x:hidden;overflow-y:scroll;"}
           - @userVideos.each do |video|
             .col-sm-3.col-md-3.col-xs-6
               .thumbnail{id: video['id'], class: video['class']}
