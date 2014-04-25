@@ -42,28 +42,6 @@
                           %a{onclick:'return confirm("Are you sure you want to delete this video?")', href:'/delete/' + video['id'] + '/' + video['title']}
                             Delete
 
-
-#uploadModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1", 'data-backdrop' => 'static', 'data-keyboard' => 'false'}
-  .modal-dialog
-    .modal-content
-      .modal-header
-        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
-        %h4#myModalLabel.modal-title Upload New Video
-      .modal-body
-        %form.alert{id:'upload-form', role: 'form', action:"/upload", method:"post", enctype:"multipart/form-data"}
-          .form-group
-            %label{for:'title'} Title
-            %input.form-control{type:"text", name:"title", id:'title'}
-          .form-group
-            %label{for:'description'} Description
-            %textarea.form-control{rows:'3', type:'text', name:'description', id:'description'}
-          .form-group
-            %label{for:'file'} File
-            %input.form-control{type:"file", name:"file", id:'file'}
-          -# %button.btn.btn-lg{type:"submit"} Submit
-          -# %button.btn.btn-success{"data-dismiss" => "modal", type: "button"} Close
-          %button.btn.btn-primary{type: "submit"} Upload
-
 #vidListModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1",'data-backdrop' => 'static', 'data-keyboard' => 'false'}
   .modal-dialog
     .modal-content
@@ -79,7 +57,7 @@
           - if @userVideos.length > 0
             %small{style: "color:grey;"}
               %i Please click on videos to attach/detach them to this application. Videos highlighted in green with a checkbox will be attached to your application when you click "Update". Videos not selected will be detached.
-        .row{style:"margin-top:10px;height:200px;overflow-x:hidden;overflow-y:scroll;"}
+        .row{style:"margin-top:10px;height:160px;overflow-x:hidden;overflow-y:scroll;"}
           - @userVideos.each do |video|
             .col-sm-3.col-md-3.col-xs-6
               .thumbnail{id: video['id'], class: video['class']}
