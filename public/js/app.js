@@ -144,3 +144,9 @@ function vidClickHandler() {
 
     $('#attachVidBtn').attr('href', '/attach/' + idStr + '/' + detachStr);
 }
+
+function cancelHandler () {
+  setTimeout(function () {
+    location.reload();
+  }, 20);
+}
