@@ -106,3 +106,19 @@ li.media {
 .vid-thumbnail {
   position:relative;
 }
+.vidtitlecont {
+  position: absolute;
+  z-index: 100000;
+  width: 202px;
+  text-align: center;
+  background: white;
+  opacity: 0.5px;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-top: 1px solid black;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.vidtitlecont p {
+  font-style: italic;
+}

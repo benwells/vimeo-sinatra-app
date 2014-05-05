@@ -23,6 +23,8 @@
         %div#slickcontainer
           - @appVideos.each do |video|
             .slickel
+              .vidtitlecont
+                %p= video['title']
               %img{src:video['thumbnails']['thumbnail'][1]['_content'], style:"border:1px solid black;border-radius:5px;"}
                 #btnContainer
                   .btn-group.dropup
