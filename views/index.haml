@@ -64,8 +64,9 @@
                 .vid-thumbnail{style: "margin:0 auto;height:75px;width:100px;background:url(" + video['thumbnails']['thumbnail'][0]['_content']  + ");"}
                   %i.icon.fa.fa-check-circle-o.fa-4x{style:'margin-top:9px;'}
                 .caption
-                  %h5
-                    = video['title']
+                  %p
+                    %i
+                      = video['title']
                   %a{ onclick:'modalDelete(' + video['id'] + ',"' + video['title'] +'")'}
                     %i.icon.fa.fa-trash-o{style:'margin-top:9px;'}
       .modal-footer

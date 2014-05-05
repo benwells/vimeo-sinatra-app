@@ -120,6 +120,7 @@ class VimeoApp < Sinatra::Base
 
     # give all user vids that intersect with appVideos a class attribute of 'selected'
     @userVideos.each do |vid|
+      vid['title'] = vid['title'][0..14] + "..." if vid['title'].length > 15
       if (@appVideos.include? vid)
         vid['class'] = 'selected'
       end
