@@ -98,6 +98,7 @@ class VimeoApp < Sinatra::Base
     @person = @person.get_info(session['user_id'])
     numUploads = @person['person']['number_of_uploads'].to_i
     numpages = (numUploads / 50).ceil;
+    numpages = 1 if numpages == 0
 
     @ALLTHEVIDEOS = [];
     for i in (1..numpages) do
